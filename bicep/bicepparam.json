@@ -1,0 +1,21 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "appInsightsName": {
+            "value": "ai-datasynaca-obs"
+        },
+        "containerAppEnvName": {
+            "value": "env-datasynaca-obs"
+        },
+        "logAnalyticsWorkspaceName": {
+            "value": "law-datasynaca-obs"
+        },
+        "containerRegistryName":{
+            "value": "crdatasynacaobs"
+        },
+        "keyVaultName":{
+            "value": "kv-datasynacaobs"
+        }
+    }
+}

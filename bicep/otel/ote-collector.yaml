@@ -1,0 +1,35 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
+processors:
+  batch:
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 512
+
+exporters:
+  azuremonitor:
+    instrumentation_key: "a954d81d-e598-46af-9577-b8ed3fdcb559"
+  logging: # Optional: Logs telemetry output for debugging
+  otlp:
+    endpoint: "http://localhost:4317"
+    tls:
+      insecure: false
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch, memory_limiter]
+      exporters: [azuremonitor, logging]
+    metrics:
+      receivers: [otlp]
+      processors: [batch, memory_limiter]
+      exporters: [azuremonitor, logging]
+    logs:
+      receivers: [otlp]
+      processors: [batch, memory_limiter]
+      exporters: [azuremonitor, logging]
