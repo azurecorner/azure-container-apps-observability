@@ -1,26 +1,39 @@
-@description('The name given to the Log Analytics workspace')
 param logAnalyticsWorkspaceName string
-
-@description('The location to where the Log Analytics workspace will be deployed')
 param location string
-
-@description('The tags that will be applied to the Log Analytics workspace')
 param tags object
+param keyVaultName string
 
-resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2023-09-01' = {
+var sharedKeyName = 'law-shared-key'
+
+resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
+  name: keyVaultName
+}
+
+
+resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2020-10-01' = {
   name: logAnalyticsWorkspaceName
   location: location
-  tags:tags
+  tags: tags
   properties: {
-    retentionInDays: 30
-    features: {
-      searchVersion: 1
-    }
-    sku: {
-      name: 'PerGB2018'
-    }
+   retentionInDays: 30
+   features: {
+    searchVersion: 1
+   }
+   sku: {
+    name: 'PerGB2018'
+   } 
   }
 }
 
-@description('The name of the Log Analytics Workspace')
-output name string = logAnalytics.name
+
+//set up a shared secret in key vault which containts the log analytics primary shared key
+resource sharedKeySecret 'Microsoft.KeyVault/vaults/secrets@2022-07-01' = {
+  name: sharedKeyName
+  parent: keyVault
+  properties: {
+    value: logAnalytics.listKeys().primarySharedKey
+  }
+}
+
+output logAnalyticsId string = logAnalytics.id
+output customerId string = logAnalytics.properties.customerId

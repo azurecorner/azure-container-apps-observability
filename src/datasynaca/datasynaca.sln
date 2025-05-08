@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "datasynaca.Api", "datasynaca.Api\datasynaca.Api.csproj", "{F265743C-00BA-4635-5E7C-C52D819981A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "datasynaca.Web", "datasynaca.Web\datasynaca.Web.csproj", "{9C7B6F31-8F41-9FE0-FE56-9947D673AA3D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F265743C-00BA-4635-5E7C-C52D819981A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F265743C-00BA-4635-5E7C-C52D819981A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F265743C-00BA-4635-5E7C-C52D819981A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F265743C-00BA-4635-5E7C-C52D819981A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C7B6F31-8F41-9FE0-FE56-9947D673AA3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C7B6F31-8F41-9FE0-FE56-9947D673AA3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C7B6F31-8F41-9FE0-FE56-9947D673AA3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C7B6F31-8F41-9FE0-FE56-9947D673AA3D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9E6E6A7B-CB7B-4F61-8EF5-6E2EEE77300F}
+	EndGlobalSection
+EndGlobal

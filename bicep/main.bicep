@@ -1,58 +1,68 @@
-@description('The location to deploy all my resources')
 param location string = resourceGroup().location
+param appName string = uniqueString(resourceGroup().id)
+param logAnalyticsWorkspaceName string = 'law${appName}'
+param keyVaultName string = 'kv${appName}'
+param lastDeployed string = utcNow('d')
+//this is used as a conditional when deploying the container app
 
-@description('The name of the log analytics workspace')
-param logAnalyticsWorkspaceName string
 
-@description('The name of the Application Insights workspace')
-param appInsightsName string 
+//container registry
+param containerRegistryName string = 'acr${appName}'
 
-@description('The name of the Container App Environment')
-param containerAppEnvName string
+//container environment
+param containerEnvironmentName string = 'env${appName}'
 
-@description('The name of the Container Registry')
-param containerRegistryName string
-
-@description('The name of the Key Vault')
-param keyVaultName string
-
-@description('The container image used by the Backend API')
-param backendApiImage string ='xxxx'
-
-@description('The container image used by the Frontend UI')
-param frontendUIImage string ='xxxx'
+//container app 
+param containerAppName string = 'aca${appName}'
+var containerAppEnvVariables = [
+  {
+    name: 'ASPNETCORE_ENVIRONMENT'
+    value: 'Development'
+  }
+]
 
 var tags = {
-  environment: 'production'
-  owner: 'Will Velida'
-  application: 'lets-build-aca'
+  ApplicationName: 'EpicApp'
+  Environment: 'Development'
+  LastDeployed: lastDeployed
 }
+
+resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' = {
+  name: keyVaultName
+  location: location
+  tags: tags
+  properties: {
+    sku: {
+      family: 'A'
+      name: 'standard'
+    }
+    tenantId: tenant().tenantId
+    enabledForDeployment: true
+    enabledForTemplateDeployment: true
+    enableSoftDelete: false
+    accessPolicies: [
+    ]
+  }
+}
+//module invocations:
 
 module logAnalytics 'modules/log-analytics.bicep' = {
-  name: 'law'
+  name: 'log-analytics'
   params: {
-    location: location 
+    tags: tags
+    keyVaultName: keyVault.name
+    location: location
     logAnalyticsWorkspaceName: logAnalyticsWorkspaceName
-    tags: tags
   }
 }
 
-module keyVault 'modules/key-vault.bicep' = {
-  name: 'kv'
+module containerEnv 'modules/container-app-env.bicep' = {
+  name: 'container-app-env'
   params: {
-    keyVaultName: keyVaultName
+    containerEnvironmentName: containerEnvironmentName
     location: location
-    tags: tags
-  }
-}
-
-module appInsights 'modules/app-insights.bicep' = {
-  name: 'appins'
-  params: {
-    appInsightsName: appInsightsName
-    keyVaultName: keyVault.outputs.name
-    location: location
-    logAnalyticsName: logAnalytics.outputs.name
+    logAnalyticsCustomerId: logAnalytics.outputs.customerId 
+    logAnalyticsSharedKey: keyVault.getSecret('law-shared-key')
     tags: tags
   }
 }
@@ -60,55 +70,34 @@ module appInsights 'modules/app-insights.bicep' = {
 module containerRegistry 'modules/container-registry.bicep' = {
   name: 'acr'
   params: {
-    containerRegistryName: containerRegistryName
-    location: location
     tags: tags
+    crName: containerRegistryName
+    keyVaultName: keyVault.name
+    location: location
   }
 }
 
-module env 'modules/container-app-env.bicep' = {
-  name: 'env'
+module containerApp 'modules/containerapp-otel.bicep' = {
+  name: 'container-app'
   params: {
-    appInsightsName: appInsights.outputs.name
-    containerAppEnvironmentName: containerAppEnvName
-    location: location
-    logAnalyticsName: logAnalytics.outputs.name
     tags: tags
+    location: location
+    containerAppName: containerAppName
+    envVariables: containerAppEnvVariables
+    containerAppEnvId: containerEnv.outputs.containerAppEnvId
+    acrServerName: containerRegistry.outputs.serverName
+    acrUsername: keyVault.getSecret('acr-username-shared-key')
+    acrPasswordSecret: keyVault.getSecret('acr-password-shared-key')  
   }
 }
 
-module storage 'modules/storage-account.bicep' = {
-  name: 'storage'
+module appInsights 'modules/app-insights.bicep' = {
+  name: 'appins'
   params: {
+    appInsightsName: 'ai-datasynaca-obs'
+    keyVaultName: keyVaultName
     location: location
-    storageAccountName: 'stdatasynacaobs'
-    fileShareName: 'otel-config'
-   }
+    logAnalyticsName: logAnalyticsWorkspaceName
+    tags: tags
+  }
 }
-
-// module backend 'modules/backend-api.bicep' = {
-//   name: 'backend'
-//   params: {
-//     containerAppEnvName: env.outputs.containerAppEnvName
-//     containerRegistryName: containerRegistry.outputs.name
-//     keyVaultName: keyVault.outputs.name
-//     location: location
-//     tags: tags
-//     imageName: backendApiImage
-//   }
-// }
-
-// module frontend 'modules/frontend-ui.bicep' = {
-//   name: 'ui'
-//   params: {
-//     containerAppEnvName: env.outputs.containerAppEnvName
-//     containerRegistryName: containerRegistry.outputs.name
-//     keyVaultName: keyVault.outputs.name
-//     location: location
-//     tags: tags
-//     imageName: frontendUIImage
-//     backendFqdn: backend.outputs.fqdn
-//   }
-// }
-
-

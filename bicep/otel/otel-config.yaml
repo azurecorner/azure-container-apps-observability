@@ -12,7 +12,7 @@ processors:
 
 exporters:
   azuremonitor:
-    instrumentation_key: "a954d81d-e598-46af-9577-b8ed3fdcb559"
+    instrumentation_key: "6fe2b979-287d-4fdf-8f3d-3200f731320e"
   logging: # Optional: Logs telemetry output for debugging
   otlp:
     endpoint: "http://localhost:4317"
