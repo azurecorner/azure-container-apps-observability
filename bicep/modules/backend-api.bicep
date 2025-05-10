@@ -13,10 +13,12 @@ param keyVaultName string
 @description('The container image that this Container App will use')
 param imageName string
 
+param userAssignedIdentityName string 
+
 @description('The tags that will be applied to the Backend API')
 param tags object
 
-var containerAppName = 'healthtrackr-api'
+var containerAppName = 'dayasync-weatherforecast-api'
 var acrPullRoleId = subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '7f951dda-4ed3-4680-a7ca-43fe172d538d')
 var keyVaultSecretUserRoleId = subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '4633458b-17de-408a-b874-0445c86b69e6')
 
@@ -32,6 +34,10 @@ resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
   name: keyVaultName
 }
 
+
+resource userAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2024-11-30' existing = {
+  name: userAssignedIdentityName
+}
 resource backendApi 'Microsoft.App/containerApps@2023-11-02-preview' = {
   name: containerAppName
   location: location
@@ -41,7 +47,7 @@ resource backendApi 'Microsoft.App/containerApps@2023-11-02-preview' = {
     configuration: {
       activeRevisionsMode: 'Multiple'
       ingress: {
-        external: false
+        external: true
         targetPort: 8080
         transport: 'http'
       }
@@ -49,19 +55,19 @@ resource backendApi 'Microsoft.App/containerApps@2023-11-02-preview' = {
         {
           server: containerRegistry.properties.loginServer
           username: containerRegistry.listCredentials().username
-          identity: 'system'
+          identity: userAssignedIdentity.id
         }
       ]
       secrets: [
         {
           name: 'app-insights-key'
           keyVaultUrl: 'https://${keyVault.name}.vault.azure.net/secrets/appinsightsinstrumentationkey'
-          identity: 'system'
+          identity: userAssignedIdentity.id
         }
         {
           name: 'app-insights-connection-string'
           keyVaultUrl: 'https://${keyVault.name}.vault.azure.net/secrets/appinsightsconnectionstring'
-          identity: 'system'
+          identity: userAssignedIdentity.id
         }
       ]
     }
@@ -96,26 +102,58 @@ resource backendApi 'Microsoft.App/containerApps@2023-11-02-preview' = {
       }
     }
   }
+  // identity: {
+  //   type: 'SystemAssigned'
+  // }
   identity: {
-    type: 'SystemAssigned'
+    type: 'UserAssigned'
+    userAssignedIdentities: {
+      '${userAssignedIdentity.id}' : {}
+    }
   }
+  dependsOn: [
+    env
+    acrPullRole
+    keyVaultSecretUserRoleAssignment
+  ]
 }
 
+// resource acrPullRole 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+//   name: guid(containerRegistry.id, backendApi.id, acrPullRoleId)
+//   scope: containerRegistry
+//   properties: {
+//     principalId: backendApi.identity.principalId
+//     roleDefinitionId: acrPullRoleId
+//     principalType: 'ServicePrincipal'
+//   }
+// }
+
+// resource keyVaultSecretUserRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+//   name: guid(keyVault.id, backendApi.id, keyVaultSecretUserRoleId)
+//   scope: keyVault
+//   properties: {
+//     principalId: backendApi.identity.principalId
+//     roleDefinitionId: keyVaultSecretUserRoleId
+//     principalType: 'ServicePrincipal'
+//   }
+// }
+
+
 resource acrPullRole 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-  name: guid(containerRegistry.id, backendApi.id, acrPullRoleId)
+  name: guid(containerRegistry.id, userAssignedIdentity.id, acrPullRoleId)
   scope: containerRegistry
   properties: {
-    principalId: backendApi.identity.principalId
+    principalId: userAssignedIdentity.properties.principalId
     roleDefinitionId: acrPullRoleId
     principalType: 'ServicePrincipal'
   }
 }
 
 resource keyVaultSecretUserRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-  name: guid(keyVault.id, backendApi.id, keyVaultSecretUserRoleId)
+  name: guid(keyVault.id, userAssignedIdentity.id, keyVaultSecretUserRoleId)
   scope: keyVault
   properties: {
-    principalId: backendApi.identity.principalId
+    principalId: userAssignedIdentity.properties.principalId
     roleDefinitionId: keyVaultSecretUserRoleId
     principalType: 'ServicePrincipal'
   }

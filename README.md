@@ -19,5 +19,37 @@ az account set --subscription $subscriptionId
 $resourceGroupName="RG-CONTAINER-APPS-OBSERVABILITY"
 
 New-AzResourceGroup -Name $resourceGroupName -Location "francecentral" 
+
+New-AzResourceGroupDeployment -Name "container-apps-observability-001" -ResourceGroupName $resourceGroupName -TemplateFile main.bicep  -DeploymentDebugLogLevel All
+
+
+
  
 New-AzResourceGroupDeployment -Name "container-apps-observability-001" -ResourceGroupName $resourceGroupName -TemplateFile main.bicep -TemplateParameterFile bicepparam.json -DeploymentDebugLogLevel All
+
+
+
+
+az containerapp show --name dayasync-weatherforecast-api  --resource-group RG-CONTAINER-APPS-OBSERVABILITY
+
+
+az containerapp logs show --name dayasync-weatherforecast-api  --resource-group RG-CONTAINER-APPS-OBSERVABILITY --follow
+
+az containerapp show \
+  --name dayasync-weatherforecast-api \
+  --resource-group RG-CONTAINER-APPS-OBSERVABILITY \
+  --query "properties.template.containers[0].image"
+
+
+az containerapp revision list \
+  --name dayasync-weatherforecast-api \
+  --resource-group RG-CONTAINER-APPS-OBSERVABILITY \
+  --query "[].{Name:name, State:properties.active, Reason:properties.healthState, Conditions:properties.conditions}" \
+  --output json
+
+ az containerapp show \
+  --name dayasync-weatherforecast-api \
+  --resource-group RG-CONTAINER-APPS-OBSERVABILITY \
+  --query "properties.provisioningState"
+"Failed"
+

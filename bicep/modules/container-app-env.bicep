@@ -5,7 +5,7 @@ param logAnalyticsCustomerId string
 param logAnalyticsSharedKey string
 param tags object
 
-resource env 'Microsoft.App/managedEnvironments@2022-03-01' = {
+resource containerEnvironment 'Microsoft.App/managedEnvironments@2022-03-01' = {
   name: containerEnvironmentName
   location: location
   tags: tags
@@ -20,4 +20,9 @@ resource env 'Microsoft.App/managedEnvironments@2022-03-01' = {
   }
 }
 
-output containerAppEnvId string = env.id
+@description('The name of the Container App Environment')
+output containerEnvironmentName string = containerEnvironment.name
+
+@description('The resource Id of the Container App Environment')
+output containerEnvironmentId string = containerEnvironment.id
+

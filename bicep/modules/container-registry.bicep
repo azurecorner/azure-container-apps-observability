@@ -45,4 +45,8 @@ resource acrPasswordSecret1 'Microsoft.KeyVault/vaults/secrets@2022-07-01' = {
 }
 
 
+@description('The name of the Container Registry')
+output name string = containerRegistry.name
+
+
 output serverName string = containerRegistry.properties.loginServer
