@@ -26,7 +26,6 @@ resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2020-10-01' = {
 }
 
 
-//set up a shared secret in key vault which containts the log analytics primary shared key
 resource sharedKeySecret 'Microsoft.KeyVault/vaults/secrets@2022-07-01' = {
   name: sharedKeyName
   parent: keyVault

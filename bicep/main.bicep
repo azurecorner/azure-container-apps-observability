@@ -1,18 +1,24 @@
+@description('Main Bicep file for deploying Azure resources for the DataSync application.')
 param location string = resourceGroup().location
+
+@description('The name of the resource group that will be used to deploy the resources.')
 param appName string = 'datasync001'
+
+@description('The name of log  logAnalyticsWorkspaceName  deploy the resources to.')
 param logAnalyticsWorkspaceName string = 'law${appName}'
+
 param keyVaultName string = 'kv${appName}'
+
 param lastDeployed string = utcNow('d')
-//this is used as a conditional when deploying the container app
+
+param deployapps  boolean = false
+
 param backendApiImage string = 'acrdatasync001.azurecr.io/weatherforecast-web-api:latest'
 
-//container registry
 param containerRegistryName string = 'acr${appName}'
 
-//container environment
 param containerEnvironmentName string = 'env${appName}'
 
-//container app 
 param containerAppName string = 'aca${appName}'
 var containerAppEnvVariables = [
   {
@@ -63,7 +69,7 @@ resource keyVaultSecretUserRoleAssignment 'Microsoft.Authorization/roleAssignmen
   }
 }
 
-//module invocations:
+
 
 module logAnalytics 'modules/log-analytics.bicep' = {
   name: 'log-analytics'
@@ -126,7 +132,7 @@ module appInsights 'modules/app-insights.bicep' = {
 }
 
 
-module backend 'modules/backend-api.bicep' = {
+module backend 'modules/backend-api.bicep' = if (deployapps) {
   name: 'web-api'
   params: {
     containerAppEnvName: containerEnvironment.outputs.containerEnvironmentName

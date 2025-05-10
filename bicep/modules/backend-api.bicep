@@ -102,9 +102,7 @@ resource backendApi 'Microsoft.App/containerApps@2023-11-02-preview' = {
       }
     }
   }
-  // identity: {
-  //   type: 'SystemAssigned'
-  // }
+
   identity: {
     type: 'UserAssigned'
     userAssignedIdentities: {
@@ -117,27 +115,6 @@ resource backendApi 'Microsoft.App/containerApps@2023-11-02-preview' = {
     keyVaultSecretUserRoleAssignment
   ]
 }
-
-// resource acrPullRole 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-//   name: guid(containerRegistry.id, backendApi.id, acrPullRoleId)
-//   scope: containerRegistry
-//   properties: {
-//     principalId: backendApi.identity.principalId
-//     roleDefinitionId: acrPullRoleId
-//     principalType: 'ServicePrincipal'
-//   }
-// }
-
-// resource keyVaultSecretUserRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-//   name: guid(keyVault.id, backendApi.id, keyVaultSecretUserRoleId)
-//   scope: keyVault
-//   properties: {
-//     principalId: backendApi.identity.principalId
-//     roleDefinitionId: keyVaultSecretUserRoleId
-//     principalType: 'ServicePrincipal'
-//   }
-// }
-
 
 resource acrPullRole 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
   name: guid(containerRegistry.id, userAssignedIdentity.id, acrPullRoleId)

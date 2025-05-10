@@ -26,7 +26,6 @@ resource containerRegistry 'Microsoft.ContainerRegistry/registries@2022-02-01-pr
 }
 
 
-//adding container registry username to keyvault
 resource acrUsername 'Microsoft.KeyVault/vaults/secrets@2022-07-01' = {
   name: usernameSecret
   parent: keyVault
@@ -35,7 +34,7 @@ resource acrUsername 'Microsoft.KeyVault/vaults/secrets@2022-07-01' = {
   }
 }
 
-//adding container registry password to key vault
+
 resource acrPasswordSecret1 'Microsoft.KeyVault/vaults/secrets@2022-07-01' = {
   name: primaryPasswordSecret
   parent: keyVault
