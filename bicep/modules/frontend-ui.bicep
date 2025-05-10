@@ -19,9 +19,9 @@ param backendFqdn string
 @description('The tags that will be applied to the Frontend UI')
 param tags object
 
-var containerAppName = 'healthtrackr-ui'
-var acrPullRoleId = subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '7f951dda-4ed3-4680-a7ca-43fe172d538d')
-var keyVaultSecretUserRoleId = subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '4633458b-17de-408a-b874-0445c86b69e6')
+param userAssignedIdentityName string 
+
+var containerAppName = 'dayasync-weatherforecast-app'
 
 resource env 'Microsoft.App/managedEnvironments@2023-11-02-preview' existing = {
   name: containerAppEnvName
@@ -33,6 +33,10 @@ resource containerRegistry 'Microsoft.ContainerRegistry/registries@2023-11-01-pr
 
 resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
   name: keyVaultName
+}
+
+resource userAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2024-11-30' existing = {
+  name: userAssignedIdentityName
 }
 
 resource frontend 'Microsoft.App/containerApps@2023-11-02-preview' = {
@@ -52,19 +56,19 @@ resource frontend 'Microsoft.App/containerApps@2023-11-02-preview' = {
         {
           server: containerRegistry.properties.loginServer
           username: containerRegistry.listCredentials().username
-          identity: 'system'
+          identity: userAssignedIdentity.id
         }
       ]
       secrets: [
         {
           name: 'app-insights-key'
           keyVaultUrl: 'https://${keyVault.name}.vault.azure.net/secrets/appinsightsinstrumentationkey'
-          identity: 'system'
+          identity: userAssignedIdentity.id
         }
         {
           name: 'app-insights-connection-string'
           keyVaultUrl: 'https://${keyVault.name}.vault.azure.net/secrets/appinsightsconnectionstring'
-          identity: 'system'
+          identity: userAssignedIdentity.id
         }
       ]
     }
@@ -87,7 +91,7 @@ resource frontend 'Microsoft.App/containerApps@2023-11-02-preview' = {
               secretRef: 'app-insights-connection-string'
             }
             {
-              name: 'BackendApi'
+              name: 'WEBAPI_URL'
               value: 'https://${backendFqdn}'
             }
           ]
@@ -104,26 +108,28 @@ resource frontend 'Microsoft.App/containerApps@2023-11-02-preview' = {
     }
   }
   identity: {
-    type: 'SystemAssigned'
+    type: 'UserAssigned'
+    userAssignedIdentities: {
+      '${userAssignedIdentity.id}' : {}
+    }
   }
 }
+// resource acrPullRole 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+//   name: guid(containerRegistry.id, frontend.id, acrPullRoleId)
+//   scope: containerRegistry
+//   properties: {
+//     principalId: frontend.identity.principalId
+//     roleDefinitionId: acrPullRoleId
+//     principalType: 'ServicePrincipal'
+//   }
+// }
 
-resource acrPullRole 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-  name: guid(containerRegistry.id, frontend.id, acrPullRoleId)
-  scope: containerRegistry
-  properties: {
-    principalId: frontend.identity.principalId
-    roleDefinitionId: acrPullRoleId
-    principalType: 'ServicePrincipal'
-  }
-}
-
-resource keyVaultSecretUserRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-  name: guid(keyVault.id, frontend.id, keyVaultSecretUserRoleId)
-  scope: keyVault
-  properties: {
-    principalId: frontend.identity.principalId
-    roleDefinitionId: keyVaultSecretUserRoleId
-    principalType: 'ServicePrincipal'
-  }
-}
+// resource keyVaultSecretUserRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+//   name: guid(keyVault.id, frontend.id, keyVaultSecretUserRoleId)
+//   scope: keyVault
+//   properties: {
+//     principalId: frontend.identity.principalId
+//     roleDefinitionId: keyVaultSecretUserRoleId
+//     principalType: 'ServicePrincipal'
+//   }
+// }

@@ -3,3 +3,5 @@
 ################################################################################
 
 /.vs
+/src/datasynaca/.vs/datasynaca
+/src/datasynaca/datasynaca.Api/bin/Debug/net8.0

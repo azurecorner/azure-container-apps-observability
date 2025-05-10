@@ -11,9 +11,10 @@ param keyVaultName string = 'kv${appName}'
 
 param lastDeployed string = utcNow('d')
 
-param deployapps  boolean = false
+param deployapps bool = true
 
 param backendApiImage string = 'acrdatasync001.azurecr.io/weatherforecast-web-api:latest'
+param frontendUIImage string = 'acrdatasync001.azurecr.io/weatherforecast-web-app:latest'
 
 param containerRegistryName string = 'acr${appName}'
 
@@ -147,4 +148,19 @@ module backend 'modules/backend-api.bicep' = if (deployapps) {
 
     appInsights
   ]
+}
+
+
+module frontend 'modules/frontend-ui.bicep' = {
+  name: 'ui'
+  params: {
+    containerAppEnvName: containerEnvironment.outputs.containerEnvironmentName
+    containerRegistryName: containerRegistry.outputs.name
+    keyVaultName: keyVault.name
+    location: location
+    userAssignedIdentityName: userAssignedIdentity.name
+    tags: tags
+    imageName: frontendUIImage
+    backendFqdn: backend.outputs.fqdn
+  }
 }
