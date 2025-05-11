@@ -13,11 +13,13 @@ param keyVaultName string
 @description('The tags that will be applied to the Application Insights workspace')
 param tags object
 
-resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2023-09-01' existing = {
+#disable-next-line BCP081
+resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2025-02-01' existing = {
   name: logAnalyticsName
 }
 
-resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
+#disable-next-line BCP081
+resource keyVault 'Microsoft.KeyVault/vaults@2024-11-01' existing = {
   name: keyVaultName
 }
 
@@ -32,17 +34,21 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   }
 }
 
-resource appInsightsConnectionString 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
-  name: 'appinsightsconnectionstring'
+
+#disable-next-line BCP081
+resource appInsightsConnectionString 'Microsoft.KeyVault/vaults/secrets@2024-11-01' = {
   parent: keyVault
+  name: 'appinsightsconnectionstring'
   properties: {
-    value: appInsights.properties.ConnectionString
+    value:  appInsights.properties.ConnectionString
   }
 }
 
-resource appInsightsInstrumentationKey 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
-  name: 'appinsightsinstrumentationkey'
+
+#disable-next-line BCP081
+resource appInsightsInstrumentationKey 'Microsoft.KeyVault/vaults/secrets@2024-11-01' = {
   parent: keyVault
+  name: 'appinsightsinstrumentationkey'
   properties: {
     value: appInsights.properties.InstrumentationKey
   }

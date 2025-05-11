@@ -20,12 +20,8 @@ $resourceGroupName="RG-CONTAINER-APPS-OBSERVABILITY"
 
 New-AzResourceGroup -Name $resourceGroupName -Location "francecentral" 
 
-New-AzResourceGroupDeployment -Name "container-apps-observability-001" -ResourceGroupName $resourceGroupName -TemplateFile main.bicep  -DeploymentDebugLogLevel All
-
-
-
  
-New-AzResourceGroupDeployment -Name "container-apps-observability-001" -ResourceGroupName $resourceGroupName -TemplateFile main.bicep -TemplateParameterFile bicepparam.json -DeploymentDebugLogLevel All
+New-AzResourceGroupDeployment -Name "container-apps-observability-001" -ResourceGroupName $resourceGroupName -TemplateFile main.bicep -TemplateParameterFile main.bicepparam -DeploymentDebugLogLevel All
 
 
 

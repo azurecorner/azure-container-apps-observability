@@ -2,16 +2,14 @@
 param location string = resourceGroup().location
 
 @description('The name of the resource group that will be used to deploy the resources.')
-param appName string = 'datasync001'
+param appName string 
 
 @description('The name of log  logAnalyticsWorkspaceName  deploy the resources to.')
 param logAnalyticsWorkspaceName string = 'law${appName}'
 
 param keyVaultName string = 'kv${appName}'
 
-param lastDeployed string = utcNow('d')
-
-param deployapps bool = true
+param deployApps bool 
 
 param backendApiImage string = 'acrdatasync001.azurecr.io/weatherforecast-web-api:latest'
 param frontendUIImage string = 'acrdatasync001.azurecr.io/weatherforecast-web-app:latest'
@@ -20,27 +18,25 @@ param containerRegistryName string = 'acr${appName}'
 
 param containerEnvironmentName string = 'env${appName}'
 
-param containerAppName string = 'aca${appName}'
-var containerAppEnvVariables = [
-  {
-    name: 'ASPNETCORE_ENVIRONMENT'
-    value: 'Development'
+param appInsightsName string = 'ai${appName}'
+
+param tags object 
+
+param adminUserObjectId string 
+var keyVaultSecretUserRoleId = subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '4633458b-17de-408a-b874-0445c86b69e6')
+
+
+module userAssignedIdentity 'modules/user-assigned-managed-identity.bicep' = {
+  name: 'user-assigned-managed-identity'
+  params: {
+    userAssignedIdentityName: 'uami-${appName}'
+    location: location
+    tags: tags
   }
-]
-
-var tags = {
-  ApplicationName: 'EpicApp'
-  Environment: 'Development'
-  LastDeployed: lastDeployed
 }
 
-resource userAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2024-11-30' = {
-  name: 'aca-identity${appName}'
-  location: location
-  tags: tags
-}
-
-resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' = {
+#disable-next-line BCP081
+resource keyVault 'Microsoft.KeyVault/vaults@2024-11-01' = {
   name: keyVaultName
   location: location
   tags: tags
@@ -58,8 +54,7 @@ resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' = {
     ]
   }
 }
-var adminUserObjectId = '7abf4c5b-9638-4ec4-b830-ede0a8031b25'
-var keyVaultSecretUserRoleId = subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '4633458b-17de-408a-b874-0445c86b69e6')
+
 resource keyVaultSecretUserRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
   name: guid(keyVault.id, adminUserObjectId, keyVaultSecretUserRoleId)
   scope: keyVault
@@ -71,9 +66,18 @@ resource keyVaultSecretUserRoleAssignment 'Microsoft.Authorization/roleAssignmen
 }
 
 
+resource keyVaultSecretPrincipalRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(keyVault.id, userAssignedIdentity.name, keyVaultSecretUserRoleId)
+  scope: keyVault
+  properties: {
+    principalId: userAssignedIdentity.outputs.userAssignedIdentityPrincipalId
+    roleDefinitionId: keyVaultSecretUserRoleId
+    principalType: 'ServicePrincipal'
+  }
+}
 
 module logAnalytics 'modules/log-analytics.bicep' = {
-  name: 'log-analytics'
+  name: 'log-analytics-workspaces'
   params: {
     tags: tags
     keyVaultName: keyVault.name
@@ -83,7 +87,7 @@ module logAnalytics 'modules/log-analytics.bicep' = {
 }
 
 module containerEnvironment 'modules/container-app-env.bicep' = {
-  name: 'container-app-env'
+  name: 'container-app-managed-environment'
   params: {
     containerEnvironmentName: containerEnvironmentName
     location: location
@@ -94,33 +98,21 @@ module containerEnvironment 'modules/container-app-env.bicep' = {
 }
 
 module containerRegistry 'modules/container-registry.bicep' = {
-  name: 'acr'
+  name: 'container-registry'
   params: {
     tags: tags
     crName: containerRegistryName
     keyVaultName: keyVault.name
     location: location
+    userAssignedIdentityPrincipalId: userAssignedIdentity.outputs.userAssignedIdentityPrincipalId
   }
 }
 
-// module containerApp 'modules/containerapp-otel.bicep' = {
-//   name: 'container-app'
-//   params: {
-//     tags: tags
-//     location: location
-//     containerAppName: containerAppName
-//     envVariables: containerAppEnvVariables
-//     containerAppEnvId: containerEnvironment.outputs.containerEnvironmentId
-//     acrServerName: containerRegistry.outputs.serverName
-//     acrUsername: keyVault.getSecret('acr-username-shared-key')
-//     acrPasswordSecret: keyVault.getSecret('acr-password-shared-key')  
-//   }
-// }
 
 module appInsights 'modules/app-insights.bicep' = {
-  name: 'appins'
+  name: 'app-insights'
   params: {
-    appInsightsName: 'ai-datasynaca-obs'
+    appInsightsName: appInsightsName
     keyVaultName: keyVaultName
     location: location
     logAnalyticsName: logAnalyticsWorkspaceName
@@ -133,7 +125,7 @@ module appInsights 'modules/app-insights.bicep' = {
 }
 
 
-module backend 'modules/backend-api.bicep' = if (deployapps) {
+module backend 'modules/backend-api.bicep' = if (deployApps) {
   name: 'web-api'
   params: {
     containerAppEnvName: containerEnvironment.outputs.containerEnvironmentName
@@ -151,8 +143,8 @@ module backend 'modules/backend-api.bicep' = if (deployapps) {
 }
 
 
-module frontend 'modules/frontend-ui.bicep' = {
-  name: 'ui'
+module frontend 'modules/frontend-ui.bicep' = if (deployApps) {
+  name: 'web-app'
   params: {
     containerAppEnvName: containerEnvironment.outputs.containerEnvironmentName
     containerRegistryName: containerRegistry.outputs.name

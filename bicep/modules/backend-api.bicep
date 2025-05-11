@@ -19,18 +19,18 @@ param userAssignedIdentityName string
 param tags object
 
 var containerAppName = 'dayasync-weatherforecast-api'
-var acrPullRoleId = subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '7f951dda-4ed3-4680-a7ca-43fe172d538d')
-var keyVaultSecretUserRoleId = subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '4633458b-17de-408a-b874-0445c86b69e6')
 
-resource env 'Microsoft.App/managedEnvironments@2023-11-02-preview' existing = {
+
+resource env 'Microsoft.App/managedEnvironments@2025-01-01' existing = {
   name: containerAppEnvName
 }
 
-resource containerRegistry 'Microsoft.ContainerRegistry/registries@2023-11-01-preview' existing = {
+#disable-next-line BCP081
+resource containerRegistry 'Microsoft.ContainerRegistry/registries@2025-04-01' existing = {
   name: containerRegistryName
 }
 
-resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
+resource keyVault 'Microsoft.KeyVault/vaults@2024-11-01' existing = {
   name: keyVaultName
 }
 
@@ -38,7 +38,9 @@ resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
 resource userAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2024-11-30' existing = {
   name: userAssignedIdentityName
 }
-resource backendApi 'Microsoft.App/containerApps@2023-11-02-preview' = {
+
+#disable-next-line BCP081
+resource backendApi 'Microsoft.App/containerApps@2025-01-01' = {
   name: containerAppName
   location: location
   tags: tags
@@ -111,30 +113,12 @@ resource backendApi 'Microsoft.App/containerApps@2023-11-02-preview' = {
   }
   dependsOn: [
     env
-    acrPullRole
-    keyVaultSecretUserRoleAssignment
+    
+    
   ]
 }
 
-resource acrPullRole 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-  name: guid(containerRegistry.id, userAssignedIdentity.id, acrPullRoleId)
-  scope: containerRegistry
-  properties: {
-    principalId: userAssignedIdentity.properties.principalId
-    roleDefinitionId: acrPullRoleId
-    principalType: 'ServicePrincipal'
-  }
-}
 
-resource keyVaultSecretUserRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-  name: guid(keyVault.id, userAssignedIdentity.id, keyVaultSecretUserRoleId)
-  scope: keyVault
-  properties: {
-    principalId: userAssignedIdentity.properties.principalId
-    roleDefinitionId: keyVaultSecretUserRoleId
-    principalType: 'ServicePrincipal'
-  }
-}
 
 @description('The FQDN for the Backend API')
 output fqdn string = backendApi.properties.configuration.ingress.fqdn
