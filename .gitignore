@@ -14,3 +14,4 @@ src/datasynaca/datasynaca.Api/obj/Debug/net8.0/datasynaca.Api.csproj.AssemblyRef
 src/datasynaca/datasynaca.Api/obj/Debug/net8.0/datasynaca.Api.GeneratedMSBuildEditorConfig.editorconfig
 .gitignore
 /src/OtelReferenceApp/.vs
+/src/WeatherForecastApp/.vs
