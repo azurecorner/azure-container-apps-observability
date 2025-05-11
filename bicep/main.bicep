@@ -20,6 +20,15 @@ param containerEnvironmentName string = 'env${appName}'
 
 param appInsightsName string = 'ai${appName}'
 
+param sqlserverName string = 'sqlserver-${appName}'
+
+param sqlserverAdminLogin string = 'logcorner'
+
+@secure()
+param sqlserverAdminPassword string 
+
+param databaseName string = 'WeatherForecastDb'
+
 param tags object 
 
 param adminUserObjectId string 
@@ -160,10 +169,10 @@ module frontend 'modules/frontend-ui.bicep' = if (deployApps) {
 module sqlserver 'modules/sql-server.bicep' = {
   name: 'sqlserver'
   params: {
-    sqlServerName: 'sqlserver-datasync-001'
-    adminLogin: 'logcorner'
-    adminPassword: 'StrongP@ssw0rd'
-    databaseName: 'WeatherForecastDb'
+    sqlServerName: sqlserverName
+    adminLogin: sqlserverAdminLogin
+    adminPassword: sqlserverAdminPassword//'StrongP@ssw0rd'
+    databaseName: databaseName
     serverLocation: location
     keyVaultName: keyVaultName
   }
