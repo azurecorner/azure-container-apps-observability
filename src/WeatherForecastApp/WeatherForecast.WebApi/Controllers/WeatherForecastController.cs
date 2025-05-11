@@ -1,13 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Text.Json;
-using WeatherForecast.Observability;
 using WeatherForecast.WebApi.Models;
 using WeatherForecast.WebApi.Services;
 
 namespace WebAppi.Controllers
 {
-
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
@@ -19,21 +17,15 @@ namespace WebAppi.Controllers
         public IWeatherService WeatherService { get; }
 
         private readonly ILogger<WeatherForecastController> _logger;
-        private readonly WeatherMetrics weatherMetrics;
 
         private static readonly ActivitySource ActivitySource = new("WeatherForecastWebApi");
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, WeatherMetrics WeatherMetrics, IWeatherService weatherService, HttpClient httpClient)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IWeatherService weatherService, HttpClient httpClient)
         {
             _logger = logger;
-            weatherMetrics = WeatherMetrics;
+
             WeatherService = weatherService;
             HttpClient = httpClient;
-            // You possibly can ship structured log messages to Azure Monitor as effectively.
-            logger.LogInformation("OTEL-APP => It is a information log");
-            logger.LogWarning("OTEL-APP => It is a warning log");
-            logger.LogError("OTEL-APP => That is an error log");
-            weatherMetrics.TemperatureChange(120);
         }
 
         [HttpPost("{postalCode}")]

@@ -14,7 +14,6 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["WeatherForecast.WebApi/WeatherForecast.WebApi.csproj", "WeatherForecast.WebApi/"]
 COPY ["WeatherForecast.Infrastructure/WeatherForecast.Infrastructure.csproj", "WeatherForecast.Infrastructure/"]
-COPY ["WeatherForecast.Observability/WeatherForecast.Observability.csproj", "WeatherForecast.Observability/"]
 RUN dotnet restore "./WeatherForecast.WebApi/WeatherForecast.WebApi.csproj"
 COPY . .
 WORKDIR "/src/WeatherForecast.WebApi"

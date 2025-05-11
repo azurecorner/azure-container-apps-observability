@@ -9,4 +9,5 @@ resource userAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@
 }
 
 output userAssignedIdentityId string = userAssignedIdentity.id
+output userAssignedIdentityName string = userAssignedIdentity.name
 output userAssignedIdentityPrincipalId string = userAssignedIdentity.properties.principalId

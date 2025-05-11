@@ -60,7 +60,6 @@
     <Folder Include="dbo\Tables\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\WeatherUnits.sql" />
     <Build Include="dbo\Tables\Weather.sql" />
     <Build Include="dbo\Tables\Location.sql" />
   </ItemGroup>

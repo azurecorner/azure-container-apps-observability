@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WeatherForecast.Infrastructure\WeatherForecast.Infrastructure.csproj" />
-    <ProjectReference Include="..\WeatherForecast.Observability\WeatherForecast.Observability.csproj" />
   </ItemGroup>
 
 </Project>

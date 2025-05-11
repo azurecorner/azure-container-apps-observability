@@ -38,7 +38,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
 #disable-next-line BCP081
 resource appInsightsConnectionString 'Microsoft.KeyVault/vaults/secrets@2024-11-01' = {
   parent: keyVault
-  name: 'appinsightsconnectionstring'
+  name: 'appinsights-connectionstring'
   properties: {
     value:  appInsights.properties.ConnectionString
   }
@@ -48,7 +48,7 @@ resource appInsightsConnectionString 'Microsoft.KeyVault/vaults/secrets@2024-11-
 #disable-next-line BCP081
 resource appInsightsInstrumentationKey 'Microsoft.KeyVault/vaults/secrets@2024-11-01' = {
   parent: keyVault
-  name: 'appinsightsinstrumentationkey'
+  name: 'appinsights-instrumentationkey'
   properties: {
     value: appInsights.properties.InstrumentationKey
   }

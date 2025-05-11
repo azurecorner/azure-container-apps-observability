@@ -1,23 +1,12 @@
-using Microsoft.Extensions.DependencyInjection;
-using WeatherForecast.Observability;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient("WebApi", client =>
 {
-    client.BaseAddress = new Uri(builder.Configuration["WEBAPI_URL"] ?? throw new InvalidOperationException("WEBAPI_URL configuration is missing or empty.")  );
-
+    client.BaseAddress = new Uri(builder.Configuration["WEBAPI_URL"] ?? throw new InvalidOperationException("WEBAPI_URL configuration is missing or empty."));
 });
 
-var serviceName = "OtelReferenceApp.WeatherForecast.WebApp";
-string[] meterName = [];
-string sourceName = "WeatherForecast";
-builder.Services.AddObservability(serviceName, sourceName, builder.Configuration, meterName);
-
-builder.Services.AddObservability(serviceName, "WeatherForecastWebApp", builder.Configuration, meterName);
-builder.AddSerilog(serviceName);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -39,5 +28,4 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-app.MapObservability();
 app.Run();

@@ -11,8 +11,8 @@ param keyVaultName string = 'kv${appName}'
 
 param deployApps bool 
 
-param backendApiImage string = 'acrdatasync001.azurecr.io/weatherforecast-web-api:latest'
-param frontendUIImage string = 'acrdatasync001.azurecr.io/weatherforecast-web-app:latest'
+param backendApiImage string = 'acrdatasynchro.azurecr.io/weatherforecast-web-api:latest'
+param frontendUIImage string = 'acrdatasynchro.azurecr.io/weatherforecast-web-app:latest'
 
 param containerRegistryName string = 'acr${appName}'
 
@@ -59,8 +59,7 @@ resource keyVault 'Microsoft.KeyVault/vaults@2024-11-01' = {
     enabledForTemplateDeployment: true
      enableRbacAuthorization: true
     enableSoftDelete: false
-    accessPolicies: [
-    ]
+ 
   }
 }
 
@@ -143,7 +142,7 @@ module backend 'modules/backend-api.bicep' = if (deployApps) {
     location: location
     tags: tags
     imageName: backendApiImage
-    userAssignedIdentityName: userAssignedIdentity.name
+    userAssignedIdentityName: userAssignedIdentity.outputs.userAssignedIdentityName
   }
   dependsOn: [
 
@@ -159,7 +158,7 @@ module frontend 'modules/frontend-ui.bicep' = if (deployApps) {
     containerRegistryName: containerRegistry.outputs.name
     keyVaultName: keyVault.name
     location: location
-    userAssignedIdentityName: userAssignedIdentity.name
+    userAssignedIdentityName: userAssignedIdentity.outputs.userAssignedIdentityName
     tags: tags
     imageName: frontendUIImage
     backendFqdn: backend.outputs.fqdn
@@ -171,9 +170,12 @@ module sqlserver 'modules/sql-server.bicep' = {
   params: {
     sqlServerName: sqlserverName
     adminLogin: sqlserverAdminLogin
-    adminPassword: sqlserverAdminPassword//'StrongP@ssw0rd'
+    adminPassword: sqlserverAdminPassword
     databaseName: databaseName
     serverLocation: location
     keyVaultName: keyVaultName
   }
+  dependsOn: [
+    keyVault
+  ]
 }

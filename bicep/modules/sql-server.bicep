@@ -8,9 +8,6 @@ param databaseName string
 @description('Name of the SQL Database.')
 param serverLocation string = resourceGroup().location
 
-
-
-// SQL Server Resource
 resource sqlServer 'Microsoft.Sql/servers@2023-08-01' = {
   name: sqlServerName
   location: serverLocation
@@ -30,7 +27,6 @@ resource allowAllWindowsAzureIps 'Microsoft.Sql/servers/firewallRules@2023-08-01
   }
 }
 
-// Database on SQL Server Resource
 resource sqlDatabase 'Microsoft.Sql/servers/databases@2023-08-01' = {
   name: databaseName
   parent: sqlServer
@@ -51,9 +47,9 @@ resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
 
 
 resource sqlserverConnectionstring 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
-  name: 'sqlserverConnectionstring'
+  name: 'sqlserver-connectionstring'
   parent: keyVault
   properties: {
-    value: 'Server=tcp:sqlserver-datasync-001.database.windows.net,1433;Initial Catalog=${databaseName};Persist Security Info=False;User ID=logcorner;Password=${adminPassword};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
+    value: 'Server=tcp:${sqlServerName}.database.windows.net,1433;Initial Catalog=${databaseName};Persist Security Info=False;User ID=logcorner;Password=${adminPassword};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
   }
 }

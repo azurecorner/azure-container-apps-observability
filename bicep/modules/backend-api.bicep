@@ -63,17 +63,17 @@ resource backendApi 'Microsoft.App/containerApps@2025-01-01' = {
       secrets: [
         {
           name: 'app-insights-key'
-          keyVaultUrl: 'https://${keyVault.name}.vault.azure.net/secrets/appinsightsinstrumentationkey'
+          keyVaultUrl: 'https://${keyVault.name}.vault.azure.net/secrets/appinsights-instrumentationkey'
           identity: userAssignedIdentity.id
         }
         {
           name: 'app-insights-connection-string'
-          keyVaultUrl: 'https://${keyVault.name}.vault.azure.net/secrets/appinsightsconnectionstring'
+          keyVaultUrl: 'https://${keyVault.name}.vault.azure.net/secrets/appinsights-connectionstring'
           identity: userAssignedIdentity.id
         }
         {
           name: 'sqlserver-connectionstring'
-          keyVaultUrl: 'https://${keyVault.name}.vault.azure.net/secrets/sqlserverConnectionstring'
+          keyVaultUrl: 'https://${keyVault.name}.vault.azure.net/secrets/sqlserver-connectionstring'
           identity: userAssignedIdentity.id
         }
       ]
@@ -86,7 +86,7 @@ resource backendApi 'Microsoft.App/containerApps@2025-01-01' = {
           env: [
                 {
                   name: 'ASPNETCORE_ENVIRONMENT'
-                  value: 'Development'
+                  value: 'ContainerApps'
                 }
                 {
                   name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
@@ -126,7 +126,6 @@ resource backendApi 'Microsoft.App/containerApps@2025-01-01' = {
     
   ]
 }
-
 
 
 @description('The FQDN for the Backend API')
