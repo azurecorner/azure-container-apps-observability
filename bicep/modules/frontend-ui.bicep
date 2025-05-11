@@ -23,15 +23,15 @@ param userAssignedIdentityName string
 
 var containerAppName = 'dayasync-weatherforecast-app'
 
-resource env 'Microsoft.App/managedEnvironments@2023-11-02-preview' existing = {
+resource env 'Microsoft.App/managedEnvironments@2025-01-01' existing = {
   name: containerAppEnvName
 }
 
-resource containerRegistry 'Microsoft.ContainerRegistry/registries@2023-11-01-preview' existing = {
+resource containerRegistry 'Microsoft.ContainerRegistry/registries@2025-04-01' existing = {
   name: containerRegistryName
 }
 
-resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
+resource keyVault 'Microsoft.KeyVault/vaults@2024-11-01' existing = {
   name: keyVaultName
 }
 
@@ -39,7 +39,7 @@ resource userAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@
   name: userAssignedIdentityName
 }
 
-resource frontend 'Microsoft.App/containerApps@2023-11-02-preview' = {
+resource frontend 'Microsoft.App/containerApps@2025-01-01' = {
   name: containerAppName
   location: location
   tags: tags
