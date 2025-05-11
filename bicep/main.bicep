@@ -164,3 +164,15 @@ module frontend 'modules/frontend-ui.bicep' = {
     backendFqdn: backend.outputs.fqdn
   }
 }
+
+module sqlserver 'modules/sql-server.bicep' = {
+  name: 'sqlserver'
+  params: {
+    sqlServerName: 'sqlserver-datasync-001'
+    adminLogin: 'logcorner'
+    adminPassword: 'StrongP@ssw0rd'
+    databaseName: 'WeatherForecastDb'
+    serverLocation: location
+    keyVaultName: keyVaultName
+  }
+}

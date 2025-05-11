@@ -69,6 +69,11 @@ resource backendApi 'Microsoft.App/containerApps@2023-11-02-preview' = {
           keyVaultUrl: 'https://${keyVault.name}.vault.azure.net/secrets/appinsightsconnectionstring'
           identity: userAssignedIdentity.id
         }
+        {
+          name: 'sqlserver-connectionstring'
+          keyVaultUrl: 'https://${keyVault.name}.vault.azure.net/secrets/sqlserverConnectionstring'
+          identity: userAssignedIdentity.id
+        }
       ]
     }
     template: {
@@ -77,19 +82,23 @@ resource backendApi 'Microsoft.App/containerApps@2023-11-02-preview' = {
           name: containerAppName
           image: imageName
           env: [
-            {
-              name: 'ASPNETCORE_ENVIRONMENT'
-              value: 'Development'
-            }
-            {
-              name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
-              secretRef: 'app-insights-key'
-            }
-            {
-              name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
-              secretRef: 'app-insights-connection-string'
-            }
-          ]
+                {
+                  name: 'ASPNETCORE_ENVIRONMENT'
+                  value: 'Development'
+                }
+                {
+                  name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
+                  secretRef: 'app-insights-key'
+                }
+                {
+                  name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
+                  secretRef: 'app-insights-connection-string'
+                }
+                {
+                  name: 'ConnectionStrings__DbConnection'
+                  secretRef: 'sqlserver-connectionstring'
+                }
+              ]
           resources: {
             cpu: json('0.5')
             memory: '1.0Gi'

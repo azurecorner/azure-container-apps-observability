@@ -10,6 +10,19 @@
 
   https://github.com/willvelida/lets-build-aca
 
+# How to monitor applications by using OpenTelemetry on Azure Container Apps
+
+  https://techcommunity.microsoft.com/blog/fasttrackforazureblog/how-to-monitor-applications-by-using-opentelemetry-on-azure-container-apps/4235035#community-4235035-4-forwarding-diag
+
+# Running the OpenTelemetry Collector in Azure Container Apps  ==> GOOD
+
+  https://www.honeycomb.io/blog/opentelemetry-collector-azure-container-apps
+
+  https://medium.com/ingeniouslysimple/deploy-and-configure-an-opentelemetry-collector-in-azure-via-terraform-0c4941962f1c
+
+# OpenTelemetry on Azure Container Apps Revisited - Managed OpenTelemetry Agent
+  https://blog.depechie.com/posts/2024-05-05-opentelemetry-on-azure-container-apps-revisited/
+
 # deploy
 
 $subscriptionId= (Get-AzContext).Subscription.id 
