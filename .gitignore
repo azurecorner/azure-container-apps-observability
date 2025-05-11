@@ -3,3 +3,13 @@
 ################################################################################
 
 /.vs
+src/**/*/obj/
+src/**/*/bin/
+src/**/*/Debug/
+src/**/*/Release/
+src/datasynaca/datasynaca.Api/obj/Debug/net8.0/datasynaca.Api.AssemblyInfo.cs
+src/datasynaca/datasynaca.Api/obj/Debug/net8.0/datasynaca.Api.AssemblyInfoInputs.cache
+src/datasynaca/datasynaca.Api/obj/Debug/net8.0/datasynaca.Api.assets.cache
+src/datasynaca/datasynaca.Api/obj/Debug/net8.0/datasynaca.Api.csproj.AssemblyReference.cache
+src/datasynaca/datasynaca.Api/obj/Debug/net8.0/datasynaca.Api.GeneratedMSBuildEditorConfig.editorconfig
+.gitignore
