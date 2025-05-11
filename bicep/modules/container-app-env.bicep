@@ -5,7 +5,7 @@ param logAnalyticsCustomerId string
 param logAnalyticsSharedKey string
 param tags object
 
-resource containerEnvironment 'Microsoft.App/managedEnvironments@2022-03-01' = {
+resource containerEnvironment 'Microsoft.App/managedEnvironments@2025-01-01' = {
   name: containerEnvironmentName
   location: location
   tags: tags
