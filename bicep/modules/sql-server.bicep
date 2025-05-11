@@ -50,10 +50,10 @@ resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
 }
 
 
-resource appInsightsInstrumentationKey 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
+resource sqlserverConnectionstring 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
   name: 'sqlserverConnectionstring'
   parent: keyVault
   properties: {
-    value: 'Server=tcp:sqlserver-datasync-001.database.windows.net,1433;Initial Catalog=WeatherForecastDb;Persist Security Info=False;User ID=logcorner;Password=StrongP@ssw0rd;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
+    value: 'Server=tcp:sqlserver-datasync-001.database.windows.net,1433;Initial Catalog=${databaseName};Persist Security Info=False;User ID=logcorner;Password=${adminPassword};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
   }
 }
