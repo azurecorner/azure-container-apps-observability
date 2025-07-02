@@ -1,0 +1,76 @@
+id: /subscriptions/023b2039-5c23-44b8-844e-c002f8ed431d/resourceGroups/RG-CONTAINER-APPS-OBSERVABILITY/providers/Microsoft.App/containerapps/collector
+identity:
+  type: None
+location: France Central
+name: collector
+properties:
+  configuration:
+    activeRevisionsMode: Single
+    dapr: null
+    ingress:
+      allowInsecure: false
+      clientCertificateMode: null
+      corsPolicy: null
+      customDomains: null
+      exposedPort: 0
+      external: true
+      fqdn: collector.icyfield-000c077d.francecentral.azurecontainerapps.io
+      ipSecurityRestrictions: null
+      stickySessions: null
+      targetPort: 4318
+      traffic:
+      - latestRevision: true
+        weight: 100
+      transport: Auto
+    maxInactiveRevisions: 100
+    registries: null
+    secrets:
+    - name: honeycomb-api-key
+    service: null
+  customDomainVerificationId: A7B00043658BFE1EB45E4C8CC19B21892555A876738A411BCE9C62ED55822C38
+  delegatedIdentities: []
+  environmentId: /subscriptions/023b2039-5c23-44b8-844e-c002f8ed431d/resourceGroups/RG-CONTAINER-APPS-OBSERVABILITY/providers/Microsoft.App/managedEnvironments/envdatasynchroaca
+  eventStreamEndpoint: https://francecentral.azurecontainerapps.dev/subscriptions/023b2039-5c23-44b8-844e-c002f8ed431d/resourceGroups/RG-CONTAINER-APPS-OBSERVABILITY/containerApps/collector/eventstream
+  latestReadyRevisionName: collector--6pd3j6k
+  latestRevisionFqdn: collector--6pd3j6k.icyfield-000c077d.francecentral.azurecontainerapps.io
+  latestRevisionName: collector--6pd3j6k
+  managedEnvironmentId: /subscriptions/023b2039-5c23-44b8-844e-c002f8ed431d/resourceGroups/RG-CONTAINER-APPS-OBSERVABILITY/providers/Microsoft.App/managedEnvironments/envdatasynchroaca
+  outboundIpAddresses:
+  - 172.189.92.26
+  provisioningState: Succeeded
+  runningStatus: Running
+  template:
+    containers:
+    - env:
+      - name: HONEYCOMB_API_KEY
+        secretRef: honeycomb-api-key
+      - name: HONEYCOMB_LOGS_DATASET
+        value: azure-logs
+      image: otel/opentelemetry-collector
+      name: collector
+      resources:
+        cpu: 0.5
+        ephemeralStorage: 2Gi
+        memory: 1Gi
+    initContainers: null
+    revisionSuffix: ''
+    scale:
+      maxReplicas: 1
+      minReplicas: 1
+      rules: null
+    serviceBinds: null
+    terminationGracePeriodSeconds: null
+    volumes:
+    - name: config
+      storageName: configmount
+      storageType: AzureFile
+  workloadProfileName: null
+resourceGroup: RG-CONTAINER-APPS-OBSERVABILITY
+systemData:
+  createdAt: '2025-07-02T08:40:05.5324678'
+  createdBy: leyegora@yahoo.fr
+  createdByType: User
+  lastModifiedAt: '2025-07-02T08:40:05.5324678'
+  lastModifiedBy: leyegora@yahoo.fr
+  lastModifiedByType: User
+type: Microsoft.App/containerApps
