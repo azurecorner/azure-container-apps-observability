@@ -44,6 +44,16 @@ module userAssignedIdentity 'modules/user-assigned-managed-identity.bicep' = {
   }
 }
 
+module storageAccount 'modules/storage-account.bicep' = {
+  name: 'storage-account'
+  params: {
+    storageAccountName: 'otelst${appName}'
+    fileShareName: 'collector-config'
+    location: location
+    tags: tags
+  }
+}
+
 #disable-next-line BCP081
 resource keyVault 'Microsoft.KeyVault/vaults@2024-11-01' = {
   name: keyVaultName

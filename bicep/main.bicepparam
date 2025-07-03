@@ -1,8 +1,8 @@
 using './main.bicep'
-param appName  = 'datasynchro'
-param deployApps  = true
+param appName  = 'datasynchroaca'
+param deployApps  = false
 
-param adminUserObjectId  = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+param adminUserObjectId  = '7abf4c5b-9638-4ec4-b830-ede0a8031b25'
 
 param sqlserverAdminPassword  = 'StrongP@ssw0rd'
 

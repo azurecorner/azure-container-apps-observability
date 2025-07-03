@@ -24,8 +24,7 @@ properties:
       transport: Auto
     maxInactiveRevisions: 100
     registries: null
-    secrets:
-    - name: honeycomb-api-key
+    
     service: null
   customDomainVerificationId: A7B00043658BFE1EB45E4C8CC19B21892555A876738A411BCE9C62ED55822C38
   delegatedIdentities: []
@@ -52,6 +51,9 @@ properties:
         cpu: 0.5
         ephemeralStorage: 2Gi
         memory: 1Gi
+      volumeMounts:
+      - mountPath: /etc/otelcol
+        volumeName: config
     initContainers: null
     revisionSuffix: ''
     scale:
