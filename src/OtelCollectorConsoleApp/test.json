@@ -1,0 +1,16 @@
+{
+  "resourceSpans": [{
+    "resource": { "attributes": [] },
+    "scopeSpans": [{
+      "scope": { "name": "test", "version": "1.0" },
+      "spans": [{
+        "traceId": "00000000000000000000000000000001",
+        "spanId":  "0000000000000002",
+        "name":    "smoke-test",
+        "kind":    1,
+        "startTimeUnixNano":  1751714071060963600,
+        "endTimeUnixNano":    1751714071085653500
+      }]
+    }]
+  }]
+}
