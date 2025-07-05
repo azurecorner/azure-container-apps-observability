@@ -1,6 +1,7 @@
 receivers:
   otlp:
     protocols:
+      grpc:
       http:
 
 processors:
@@ -14,38 +15,38 @@ processors:
         value: $CONTAINER_APP_REVISION
         action: insert
       - key: azure.container_app.name
-        value: $CONTAINER_APP_REVISION
+        value: $CONTAINER_APP_NAME
         action: insert
   filter/healthcheck:
     spans:
       exclude:
         match_type: strict
         attributes:
-          - Key: http.target
-            Value: /health
+          - key: http.target
+            value: /health
 
 exporters:
-  otlp:
-    endpoint: "api.honeycomb.io:443"
-    headers:
-      "x-honeycomb-team": "$HONEYCOMB_API_KEY"
-  otlp/logs:
-    endpoint: "api.honeycomb.io:443"
-    headers:
-      "x-honeycomb-team": "$HONEYCOMB_API_KEY"
-      "x-honeycomb-dataset": "$HONEYCOMB_LOGS_DATASET"
+  debug:
+    verbosity: detailed
+  azuremonitor:
+    connection_string: "${APPINSIGHTS_CONN_STRING}"
+  logging:
+    loglevel: debug
 
 service:
+  telemetry:
+    logs:
+      level: debug
   pipelines:
     traces:
       receivers: [otlp]
-      processors: [batch,attributes/collector_info,filter/healthcheck]
-      exporters: [otlp]
+      processors: [batch, attributes/collector_info, filter/healthcheck]
+      exporters: [debug, azuremonitor, logging]
     metrics:
       receivers: [otlp]
-      processors: [batch]
-      exporters: [otlp]
+      processors: [batch, attributes/collector_info]
+      exporters: [azuremonitor, logging]
     logs:
       receivers: [otlp]
-      processors: [batch]
-      exporters: [otlp/logs]
+      processors: [batch, attributes/collector_info]
+      exporters: [azuremonitor, logging]
