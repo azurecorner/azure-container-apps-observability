@@ -15,6 +15,14 @@ file make_collector_app_insight.sh
 
 ./make_collector_app_insight.sh
 
+
+
+
+az deployment group create  --resource-group appinsight-collectordatasync --template-file main.bicep 
+
+
+
+
 CONTAINER_APP_NAME=collector
 RESOURCE_GROUP=honeycomb-collectordatasync
 
