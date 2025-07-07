@@ -15,3 +15,4 @@ src/datasynaca/datasynaca.Api/obj/Debug/net8.0/datasynaca.Api.GeneratedMSBuildEd
 .gitignore
 /src/OtelReferenceApp/.vs
 /src/WeatherForecastApp/.vs
+/src/OtelCollectorConsoleApp/.vs/OtelCollectorConsoleApp
