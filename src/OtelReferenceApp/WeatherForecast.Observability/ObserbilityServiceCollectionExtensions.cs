@@ -80,7 +80,7 @@ public static class ObserbilityServiceCollectionExtensions
              })
              .AddOtlpExporter(options =>
              {
-                 var oltpEndpoint = "https://collector.delightfulmoss-8b2af8d8.westeurope.azurecontainerapps.io/v1/metrics";
+                 var oltpEndpoint = "https://collector.bravetree-18daf065.westeurope.azurecontainerapps.io/v1/metrics";
                  if (!string.IsNullOrEmpty(oltpEndpoint))
                  {
                      options.Endpoint = new Uri(oltpEndpoint); // aks use http://open-telemetry-collector.monitoring.svc.cluster.local:4318
@@ -142,7 +142,7 @@ public static class ObserbilityServiceCollectionExtensions
                                var oltpEndpoint = configuration["OLTP_ENDPOINT"];
                                if (!string.IsNullOrEmpty(oltpEndpoint))
                                {
-                                   options.Endpoint = new Uri("https://collector.delightfulmoss-8b2af8d8.westeurope.azurecontainerapps.io/v1/traces");
+                                   options.Endpoint = new Uri("https://collector.bravetree-18daf065.westeurope.azurecontainerapps.io/v1/traces");
                                    options.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.HttpProtobuf;
                                }
                                else

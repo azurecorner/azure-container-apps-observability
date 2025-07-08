@@ -63,7 +63,7 @@ namespace WeatherForecast.Observability
                    //})
                     .WriteTo.OpenTelemetry(options =>
                     {
-                        options.Endpoint = "https://collector.delightfulmoss-8b2af8d8.westeurope.azurecontainerapps.io/v1/logs";
+                        options.Endpoint = "https://collector.bravetree-18daf065.westeurope.azurecontainerapps.io/v1/logs";
                         options.Protocol = Serilog.Sinks.OpenTelemetry.OtlpProtocol.HttpProtobuf;
 
                         options.ResourceAttributes = new Dictionary<string, object>
