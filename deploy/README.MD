@@ -33,4 +33,11 @@ az containerapp exec \
   --command "ls -l /etc/otelcol && cat /etc/otelcol/config.yaml"
 
 
-az containerapp logs show  --name collector  --resource-group honeycomb-collectordatasync --follow
+az containerapp logs show  --name collector  --resource-group appinsight-collectordatasync --follow
+
+# test
+
+curl -v https://collector.delightfulmoss-8b2af8d8.westeurope.azurecontainerapps.io/v1/traces \
+ -H "Content-Type: application/json" \
+ -d '{"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"curl-test"}}]},"scopeSpans":[{"scope":{},"spans":[]}]}]}'
+

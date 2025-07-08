@@ -1,0 +1,884 @@
+05/09/2025 14:25:11 +00:00 [Warning] Using an in-memory repository. Keys will not be persisted to storage.
+05/09/2025 14:25:12 +00:00 [Warning] Neither user profile nor HKLM registry available. Using an ephemeral key repository. Protected data will be unavailable when application exits.
+05/09/2025 14:25:12 +00:00 [Warning] No XML encryptor configured. Key {1c04f1d5-77e2-491c-8d85-4814a39eb7fc} may be persisted to storage in unencrypted form.
+05/09/2025 14:27:53 +00:00 [Error] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: An invalid request URI was provided. Either the request URI must be an absolute URI or BaseAddress must be set.
+   at System.Net.Http.HttpClient.PrepareRequestMessage(HttpRequestMessage request)
+   at System.Net.Http.HttpClient.SendAsync(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationToken cancellationToken)
+   at WeatherForecast.WebApp.Controllers.WeatherForecastController.Index() in C:\Users\logcorner\source\repos\observalibility-pattern\LogisticManagement\iac\src\OtelReferenceApp\WeatherForecast.WebApp\Controllers\WeatherForecastController.cs:line 33
+   at lambda_method21(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+05/09/2025 14:28:32 +00:00 [Warning] Using an in-memory repository. Keys will not be persisted to storage.
+05/09/2025 14:28:32 +00:00 [Warning] Neither user profile nor HKLM registry available. Using an ephemeral key repository. Protected data will be unavailable when application exits.
+05/09/2025 14:28:33 +00:00 [Warning] No XML encryptor configured. Key {7d8d5c90-0f43-4138-bd03-1a26cc9d839f} may be persisted to storage in unencrypted form.
+05/09/2025 14:29:39 +00:00 [Warning] Using an in-memory repository. Keys will not be persisted to storage.
+05/09/2025 14:29:39 +00:00 [Warning] Neither user profile nor HKLM registry available. Using an ephemeral key repository. Protected data will be unavailable when application exits.
+05/09/2025 14:29:40 +00:00 [Warning] No XML encryptor configured. Key {a1b33755-87b3-4db6-a7d4-c60aeefb311e} may be persisted to storage in unencrypted form.
+05/09/2025 14:33:55 +00:00 [Warning] Using an in-memory repository. Keys will not be persisted to storage.
+05/09/2025 14:33:55 +00:00 [Warning] Neither user profile nor HKLM registry available. Using an ephemeral key repository. Protected data will be unavailable when application exits.
+05/09/2025 14:33:56 +00:00 [Warning] No XML encryptor configured. Key {b4bbae61-9151-476a-be46-58841f8e3772} may be persisted to storage in unencrypted form.
+05/09/2025 14:35:13 +00:00 [Error] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: An invalid request URI was provided. Either the request URI must be an absolute URI or BaseAddress must be set.
+   at System.Net.Http.HttpClient.PrepareRequestMessage(HttpRequestMessage request)
+   at System.Net.Http.HttpClient.SendAsync(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationToken cancellationToken)
+   at WeatherForecast.WebApp.Controllers.WeatherForecastController.Index() in C:\Users\logcorner\source\repos\observalibility-pattern\LogisticManagement\iac\src\OtelReferenceApp\WeatherForecast.WebApp\Controllers\WeatherForecastController.cs:line 33
+   at lambda_method21(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+05/09/2025 14:38:12 +00:00 [Warning] Using an in-memory repository. Keys will not be persisted to storage.
+05/09/2025 14:38:13 +00:00 [Warning] Neither user profile nor HKLM registry available. Using an ephemeral key repository. Protected data will be unavailable when application exits.
+05/09/2025 14:38:13 +00:00 [Warning] No XML encryptor configured. Key {7bbdcf89-3dde-469e-9c56-a9e420a9f3f3} may be persisted to storage in unencrypted form.
+05/09/2025 14:39:15 +00:00 [Error] An unhandled exception has occurred while executing the request.
+System.Net.Http.HttpRequestException: Connection refused (localhost:7058)
+ ---> System.Net.Sockets.SocketException (111): Connection refused
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.Metrics.MetricsHandler.SendAsyncWithMetrics(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|4_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at WeatherForecast.WebApp.Controllers.WeatherForecastController.Index() in C:\Users\logcorner\source\repos\observalibility-pattern\LogisticManagement\iac\src\OtelReferenceApp\WeatherForecast.WebApp\Controllers\WeatherForecastController.cs:line 33
+   at lambda_method21(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+05/09/2025 14:45:05 +00:00 [Warning] Using an in-memory repository. Keys will not be persisted to storage.
+05/09/2025 14:45:05 +00:00 [Warning] Neither user profile nor HKLM registry available. Using an ephemeral key repository. Protected data will be unavailable when application exits.
+05/09/2025 14:45:06 +00:00 [Warning] No XML encryptor configured. Key {c5e3fcad-b0b0-4d5c-9315-79538e442b48} may be persisted to storage in unencrypted form.
+05/17/2025 07:47:45 +00:00 [Information] Started activity for WeatherForecast with TraceId: "327d1990988076693369693f8a07d796", SpanId: "e7d5c9c5a50b5477"
+05/17/2025 07:48:23 +00:00 [Error] Failed to retrieve weather data. Status code: InternalServerError
+05/17/2025 07:48:40 +00:00 [Information] Started activity for WeatherForecast with TraceId: "122c7b83c4481c294649fa93f3a690c5", SpanId: "bb52f03430112f21"
+05/17/2025 07:50:24 +00:00 [Information] Started activity for WeatherForecast with TraceId: "3575539aa3ca88e36a8c300735e16c4a", SpanId: "7480fcea06838fdc"
+05/17/2025 07:50:24 +00:00 [Information] Successfully fetched weather data. Items count: 0
+05/17/2025 07:50:36 +00:00 [Information] Started activity for WeatherForecast with TraceId: "37a8e448a7403028462925dc6b2967bb", SpanId: "b54be5a9f8b10248"
+05/17/2025 07:50:36 +00:00 [Information] Successfully fetched weather data. Items count: 0
+05/17/2025 08:31:38 +00:00 [Information] Started activity for WeatherForecast with TraceId: "d635458cb471561e979625a32e3b061e", SpanId: "dede7e5c8bdb168d"
+05/17/2025 08:31:43 +00:00 [Information] Successfully fetched weather data. Items count: 0
+05/17/2025 08:31:49 +00:00 [Information] Started activity for WeatherForecast with TraceId: "152e59a6092aff5a128965399a4017bd", SpanId: "9ebc04105309a7be"
+05/17/2025 08:31:49 +00:00 [Information] Successfully fetched weather data. Items count: 0
+05/19/2025 07:48:30 +00:00 [Information] Started activity for WeatherForecast with TraceId: "875a31a088c2fe4d4caca34737417f86", SpanId: "ec9b5b807a67f3df"
+05/19/2025 07:48:35 +00:00 [Information] Successfully fetched weather data. Items count: 0
+06/10/2025 06:22:21 +00:00 [Information] Handling request: "GET" "/"
+06/10/2025 06:22:22 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:22:22 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/10/2025 06:22:22 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/10/2025 06:22:22 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/10/2025 06:22:22 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/10/2025 06:22:22 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:22:22 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:22:22 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/10/2025 06:22:22 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/10/2025 06:22:22 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:22:22 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:22:22 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:22:22 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:23:21 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/10/2025 06:23:21 +00:00 [Information] Started activity for WeatherForecast with TraceId: "464be3a18d7abc5c0ee8d3fd10eb3103", SpanId: "490b8771c547a1e1"
+06/10/2025 06:24:19 +00:00 [Information] Handling request: "GET" "/"
+06/10/2025 06:24:20 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:24:20 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/10/2025 06:24:20 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/10/2025 06:24:20 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/10/2025 06:24:20 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:24:20 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/10/2025 06:24:20 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:24:20 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/10/2025 06:24:20 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/10/2025 06:24:20 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:24:20 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:24:20 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:24:20 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:24:35 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/10/2025 06:24:36 +00:00 [Information] Started activity for WeatherForecast with TraceId: "589b95c100e6a51c2da76bffc97cfe08", SpanId: "0854582ccecb1922"
+06/10/2025 06:24:40 +00:00 [Information] Successfully fetched weather data. Items count: 7
+06/10/2025 06:24:40 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:24:40 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/10/2025 06:24:40 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/10/2025 06:24:40 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/10/2025 06:24:40 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/10/2025 06:24:40 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:24:40 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:24:40 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/10/2025 06:24:40 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:24:40 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:24:40 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/10/2025 06:24:40 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:24:40 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:24:43 +00:00 [Information] Handling request: "GET" "/WeatherForecast/Create"
+06/10/2025 06:24:43 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:24:43 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/10/2025 06:24:43 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/10/2025 06:24:43 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/10/2025 06:24:43 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/10/2025 06:24:43 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/10/2025 06:24:43 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/10/2025 06:24:43 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:24:43 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:24:43 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:24:43 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:24:43 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:24:43 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:24:47 +00:00 [Information] Handling request: "POST" "/WeatherForecast/Create"
+06/10/2025 06:24:47 +00:00 [Information] Started activity for WeatherForecast creation with TraceId: "0bbd612a1690c0b4206034e2fdf69ab4", SpanId: "705ec70fb5629dea"
+06/10/2025 06:25:12 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 302
+06/10/2025 06:25:12 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/10/2025 06:25:12 +00:00 [Information] Started activity for WeatherForecast with TraceId: "212ae5eed0fa5fb742532b22bdc2784a", SpanId: "16f7fb0c29ed7b34"
+06/10/2025 06:25:12 +00:00 [Information] Successfully fetched weather data. Items count: 7
+06/10/2025 06:25:12 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:25:12 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/10/2025 06:25:12 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/10/2025 06:25:12 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/10/2025 06:25:12 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:25:12 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:25:12 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:25:12 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/10/2025 06:25:12 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/10/2025 06:25:12 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/10/2025 06:25:12 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:25:12 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:25:12 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:27:04 +00:00 [Information] Handling request: "GET" "/WeatherForecast/Create"
+06/10/2025 06:27:04 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:27:04 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/10/2025 06:27:04 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/10/2025 06:27:04 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/10/2025 06:27:04 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/10/2025 06:27:04 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/10/2025 06:27:04 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:27:04 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:27:04 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/10/2025 06:27:04 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:27:04 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:27:04 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:27:04 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:27:07 +00:00 [Information] Handling request: "POST" "/WeatherForecast/Create"
+06/10/2025 06:27:07 +00:00 [Information] Started activity for WeatherForecast creation with TraceId: "ebbee1aa262103d6d6cc8ca8708ca40e", SpanId: "b7007479850e9c95"
+06/10/2025 06:27:09 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 302
+06/10/2025 06:27:09 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/10/2025 06:27:09 +00:00 [Information] Started activity for WeatherForecast with TraceId: "2c77231ead9861c267cc25fedf1f1acb", SpanId: "acb215629cea6bdb"
+06/10/2025 06:27:09 +00:00 [Information] Successfully fetched weather data. Items count: 7
+06/10/2025 06:27:09 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:27:09 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/10/2025 06:27:09 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/10/2025 06:27:09 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/10/2025 06:27:09 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:27:09 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:27:09 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:27:10 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/10/2025 06:27:10 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/10/2025 06:27:10 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:27:10 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/10/2025 06:27:10 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:27:10 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:34:42 +00:00 [Information] Handling request: "GET" "/"
+06/10/2025 06:34:43 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:34:44 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/10/2025 06:34:44 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/10/2025 06:34:44 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/10/2025 06:34:44 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:34:44 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:34:44 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:34:45 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/10/2025 06:34:45 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/10/2025 06:34:45 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/10/2025 06:34:45 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:34:45 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:34:45 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:35:11 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/10/2025 06:35:11 +00:00 [Information] Started activity for WeatherForecast with TraceId: "2c2eb7115937b379ebc17fe80c32e532", SpanId: "473019fef6278d04"
+06/10/2025 06:35:16 +00:00 [Information] Successfully fetched weather data. Items count: 7
+06/10/2025 06:35:16 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:35:16 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/10/2025 06:35:16 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/10/2025 06:35:16 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/10/2025 06:35:16 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/10/2025 06:35:16 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:35:16 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:35:16 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/10/2025 06:35:16 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:35:16 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:35:16 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/10/2025 06:35:16 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:35:16 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:35:19 +00:00 [Information] Handling request: "GET" "/WeatherForecast/Create"
+06/10/2025 06:35:19 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:35:19 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/10/2025 06:35:19 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/10/2025 06:35:19 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/10/2025 06:35:19 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:35:19 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/10/2025 06:35:19 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/10/2025 06:35:19 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/10/2025 06:35:19 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:35:19 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:35:19 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:35:19 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:35:19 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:35:23 +00:00 [Information] Handling request: "POST" "/WeatherForecast/Create"
+06/10/2025 06:35:23 +00:00 [Information] Started activity for WeatherForecast creation with TraceId: "3ad1c79792f7747db7df2123ab6df269", SpanId: "8e7ad37fea1925b6"
+06/10/2025 06:35:23 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 302
+06/10/2025 06:35:23 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/10/2025 06:35:23 +00:00 [Information] Started activity for WeatherForecast with TraceId: "90289a32c992cbff1f93230b48f8ff6e", SpanId: "1a2b9013845dcd68"
+06/10/2025 06:35:24 +00:00 [Information] Successfully fetched weather data. Items count: 7
+06/10/2025 06:35:24 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:35:24 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/10/2025 06:35:24 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/10/2025 06:35:24 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/10/2025 06:35:24 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/10/2025 06:35:24 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/10/2025 06:35:24 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/10/2025 06:35:24 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:35:24 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:35:24 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:35:24 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:35:24 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:35:24 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:38:40 +00:00 [Information] Handling request: "GET" "/"
+06/10/2025 06:38:48 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:38:50 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/10/2025 06:38:50 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/10/2025 06:38:50 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/10/2025 06:38:50 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:38:50 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:38:51 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:38:51 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/10/2025 06:38:51 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/10/2025 06:38:51 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/10/2025 06:38:51 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:38:51 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:38:51 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:39:13 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/10/2025 06:39:13 +00:00 [Information] Started activity for WeatherForecast with TraceId: "a14db9e2c980b8f14144f0b83bfc82f1", SpanId: "e22c4de7f25d0065"
+06/10/2025 06:39:15 +00:00 [Information] Successfully fetched weather data. Items count: 7
+06/10/2025 06:39:15 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:39:15 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/10/2025 06:39:15 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/10/2025 06:39:15 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/10/2025 06:39:16 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/10/2025 06:39:16 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:39:16 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:39:16 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/10/2025 06:39:16 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/10/2025 06:39:16 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:39:16 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:39:16 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:39:16 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:39:18 +00:00 [Information] Handling request: "GET" "/WeatherForecast/Create"
+06/10/2025 06:39:18 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:39:18 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/10/2025 06:39:18 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/10/2025 06:39:18 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/10/2025 06:39:18 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/10/2025 06:39:18 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/10/2025 06:39:18 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/10/2025 06:39:18 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:39:18 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:39:18 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:39:18 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:39:18 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:39:18 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:39:21 +00:00 [Information] Handling request: "POST" "/WeatherForecast/Create"
+06/10/2025 06:39:21 +00:00 [Information] Started activity for WeatherForecast creation with TraceId: "aab621281fa40206c1c534ba7b95e137", SpanId: "0c55a64b3f479d9c"
+06/10/2025 06:39:22 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 302
+06/10/2025 06:39:22 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/10/2025 06:39:22 +00:00 [Information] Started activity for WeatherForecast with TraceId: "839804204f4a8518f0a0b7004ca2f60a", SpanId: "15eeab898d0146ee"
+06/10/2025 06:39:22 +00:00 [Information] Successfully fetched weather data. Items count: 7
+06/10/2025 06:39:22 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:39:22 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/10/2025 06:39:22 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/10/2025 06:39:22 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/10/2025 06:39:22 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/10/2025 06:39:22 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/10/2025 06:39:22 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:39:22 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/10/2025 06:39:22 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:39:22 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:39:22 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:39:22 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:39:22 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:41:44 +00:00 [Information] Handling request: "GET" "/WeatherForecast/Details/1"
+06/10/2025 06:41:44 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:41:44 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/10/2025 06:41:44 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/10/2025 06:41:44 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/10/2025 06:41:44 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/10/2025 06:41:44 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/10/2025 06:41:45 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:41:44 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/10/2025 06:41:45 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:41:45 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:41:45 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:41:45 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:41:45 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:08 +00:00 [Information] Handling request: "GET" "/"
+06/10/2025 06:47:09 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:09 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/10/2025 06:47:09 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/10/2025 06:47:09 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/10/2025 06:47:09 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/10/2025 06:47:09 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:09 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/10/2025 06:47:09 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:09 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/10/2025 06:47:09 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:09 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:09 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:09 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:12 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/10/2025 06:47:12 +00:00 [Information] Started activity for WeatherForecast with TraceId: "08dd91cea9778b0832b33c6fb88f5fab", SpanId: "e1479e4860c1e4e8"
+06/10/2025 06:47:16 +00:00 [Information] Successfully fetched weather data. Items count: 7
+06/10/2025 06:47:16 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:16 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/10/2025 06:47:16 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/10/2025 06:47:16 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:16 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/10/2025 06:47:16 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/10/2025 06:47:16 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/10/2025 06:47:16 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/10/2025 06:47:16 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:16 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:16 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:16 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:16 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:18 +00:00 [Information] Handling request: "GET" "/WeatherForecast/Create"
+06/10/2025 06:47:18 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:18 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/10/2025 06:47:18 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/10/2025 06:47:18 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/10/2025 06:47:18 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/10/2025 06:47:18 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:18 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/10/2025 06:47:18 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:18 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/10/2025 06:47:18 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:18 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:18 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:18 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:22 +00:00 [Information] Handling request: "POST" "/WeatherForecast/Create"
+06/10/2025 06:47:22 +00:00 [Information] Started activity for WeatherForecast creation with TraceId: "a11e0ff1d54120d9a95acd055ca84a7a", SpanId: "534d1a36422e3fab"
+06/10/2025 06:47:22 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 302
+06/10/2025 06:47:22 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/10/2025 06:47:22 +00:00 [Information] Started activity for WeatherForecast with TraceId: "ac2804dc443f6ed7f10218319cb139f1", SpanId: "ae060216ac464982"
+06/10/2025 06:47:23 +00:00 [Information] Successfully fetched weather data. Items count: 7
+06/10/2025 06:47:23 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:23 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/10/2025 06:47:23 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/10/2025 06:47:23 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/10/2025 06:47:23 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/10/2025 06:47:23 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/10/2025 06:47:23 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/10/2025 06:47:23 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:23 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:23 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:23 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:23 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/10/2025 06:47:23 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 07:33:06 +00:00 [Information] Handling request: "GET" "/"
+06/12/2025 07:33:07 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 07:33:08 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 07:33:08 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 07:33:08 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 07:33:08 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 07:33:08 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 07:33:08 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 07:33:08 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 07:33:08 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 07:33:08 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 07:33:09 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 07:33:09 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 07:33:09 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 07:33:22 +00:00 [Information] Handling request: "GET" "/Home/Login"
+06/12/2025 07:33:22 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 07:33:22 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 07:33:23 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 07:33:23 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 07:33:22 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 07:33:22 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 07:33:23 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 07:33:23 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 07:33:23 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 07:33:23 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 07:33:23 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 07:33:23 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 07:33:23 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:27:05 +00:00 [Information] Handling request: "GET" "/"
+06/12/2025 12:27:06 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:27:06 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 12:27:06 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 12:27:06 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 12:27:06 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:27:06 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:27:06 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:27:07 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 12:27:07 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 12:27:07 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 12:27:07 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:27:07 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:27:07 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:27:24 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/12/2025 12:28:45 +00:00 [Information] Successfully fetched weather data. Items count: 8
+06/12/2025 12:28:50 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:28:50 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 12:28:50 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 12:28:50 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 12:28:50 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:28:50 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:28:50 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:28:50 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 12:28:50 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 12:28:50 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 12:28:50 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:28:50 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:28:50 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:37:47 +00:00 [Information] Handling request: "GET" "/"
+06/12/2025 12:37:47 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:37:47 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 12:37:47 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 12:37:47 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 12:37:47 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 12:37:47 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:37:47 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:37:47 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 12:37:47 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 12:37:47 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:37:47 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:37:47 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:37:47 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:39:21 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/12/2025 12:39:26 +00:00 [Error] Exception occurred while fetching weather data.
+System.Text.Json.JsonException: 'I' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0.
+ ---> System.Text.Json.JsonReaderException: 'I' is an invalid start of a value. LineNumber: 0 | BytePositionInLine: 0.
+   at System.Text.Json.ThrowHelper.ThrowJsonReaderException(Utf8JsonReader& json, ExceptionResource resource, Byte nextByte, ReadOnlySpan`1 bytes)
+   at System.Text.Json.Utf8JsonReader.ConsumeValue(Byte marker)
+   at System.Text.Json.Utf8JsonReader.ReadFirstToken(Byte first)
+   at System.Text.Json.Utf8JsonReader.ReadSingleSegment()
+   at System.Text.Json.Utf8JsonReader.Read()
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   --- End of inner exception stack trace ---
+   at System.Text.Json.ThrowHelper.ReThrowWithPath(ReadStack& state, JsonReaderException ex)
+   at System.Text.Json.Serialization.JsonConverter`1.ReadCore(Utf8JsonReader& reader, T& value, JsonSerializerOptions options, ReadStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.Deserialize(Utf8JsonReader& reader, ReadStack& state)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 utf8Json, JsonTypeInfo`1 jsonTypeInfo, Nullable`1 actualByteCount)
+   at System.Text.Json.JsonSerializer.ReadFromSpan[TValue](ReadOnlySpan`1 json, JsonTypeInfo`1 jsonTypeInfo)
+   at System.Text.Json.JsonSerializer.Deserialize[TValue](String json, JsonSerializerOptions options)
+   at WeatherForecast.WebApp.Controllers.WeatherForecastController.Index() in C:\Users\logcorner\source\repos\observalibility-pattern\LogisticManagement\iac\observability\src\OtelReferenceApp\WeatherForecast.WebApp\Controllers\WeatherForecastController.cs:line 86
+06/12/2025 12:39:26 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 500
+06/12/2025 12:39:54 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/12/2025 12:41:38 +00:00 [Information] Handling request: "GET" "/"
+06/12/2025 12:41:39 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:41:39 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 12:41:39 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 12:41:39 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 12:41:39 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 12:41:39 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:41:39 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:41:39 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 12:41:39 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 12:41:39 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:41:39 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:41:39 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:41:39 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:41:51 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/12/2025 12:42:31 +00:00 [Information] Successfully fetched weather data. Items count: 8
+06/12/2025 12:42:31 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:42:31 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 12:42:31 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 12:42:31 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 12:42:31 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 12:42:31 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 12:42:31 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 12:42:32 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:42:32 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:42:32 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:42:32 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:42:32 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:42:32 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:46:41 +00:00 [Information] Handling request: "GET" "/"
+06/12/2025 12:46:42 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:46:42 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 12:46:42 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 12:46:42 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 12:46:42 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:46:42 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:46:42 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:46:42 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 12:46:42 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 12:46:42 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 12:46:42 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:46:42 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:46:42 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:47:02 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/12/2025 12:47:11 +00:00 [Information] Successfully fetched weather data. Items count: 8
+06/12/2025 12:47:11 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:47:11 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 12:47:11 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 12:47:11 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 12:47:11 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 12:47:11 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 12:47:11 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 12:47:11 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:47:11 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:47:11 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:47:11 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:47:11 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:47:11 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:47:45 +00:00 [Information] Handling request: "GET" "/WeatherForecast/Create"
+06/12/2025 12:47:45 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:47:45 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 12:47:45 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 12:47:45 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 12:47:45 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 12:47:45 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:47:45 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 12:47:45 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:47:45 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:47:45 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:47:45 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 12:47:45 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:47:45 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:47:49 +00:00 [Information] Handling request: "POST" "/WeatherForecast/Create"
+06/12/2025 12:47:55 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 302
+06/12/2025 12:47:55 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/12/2025 12:47:58 +00:00 [Information] Successfully fetched weather data. Items count: 8
+06/12/2025 12:47:58 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:47:58 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 12:47:58 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 12:47:58 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 12:47:58 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:47:58 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:47:58 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:47:58 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 12:47:58 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 12:47:58 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:47:58 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 12:47:58 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:47:58 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:13 +00:00 [Information] Handling request: "GET" "/"
+06/12/2025 12:52:13 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:13 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 12:52:13 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 12:52:13 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 12:52:13 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 12:52:13 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 12:52:13 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:13 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:13 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:13 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 12:52:14 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:14 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:14 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:15 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/12/2025 12:52:19 +00:00 [Information] Successfully fetched weather data. Items count: 8
+06/12/2025 12:52:19 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:19 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 12:52:19 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 12:52:19 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 12:52:19 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:19 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:19 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:19 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 12:52:19 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 12:52:19 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:19 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:19 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 12:52:19 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:39 +00:00 [Information] Handling request: "GET" "/"
+06/12/2025 12:52:41 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:41 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 12:52:41 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 12:52:41 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 12:52:41 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 12:52:41 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:41 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:41 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 12:52:41 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 12:52:41 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:42 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:41 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:42 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:44 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/12/2025 12:52:53 +00:00 [Information] Successfully fetched weather data. Items count: 8
+06/12/2025 12:52:53 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:53 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 12:52:53 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 12:52:53 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 12:52:53 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 12:52:53 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 12:52:54 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:54 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:54 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:53 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 12:52:54 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:54 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 12:52:54 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:08:18 +00:00 [Information] Handling request: "GET" "/"
+06/12/2025 13:08:19 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:08:20 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 13:08:20 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 13:08:20 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 13:08:20 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:08:20 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:08:20 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:08:21 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 13:08:21 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 13:08:21 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 13:08:21 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:08:21 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:08:21 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:09:04 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/12/2025 13:09:04 +00:00 [Information] Started activity for WeatherForecast with TraceId: "6fee77eeb6590187a8a77682dcb2f63d", SpanId: "faaf66f44efc766a"
+06/12/2025 13:10:28 +00:00 [Information] Successfully fetched weather data. Items count: 8
+06/12/2025 13:10:28 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:10:28 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 13:10:28 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 13:10:28 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 13:10:28 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 13:10:28 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:10:28 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:10:28 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 13:10:28 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:10:28 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:10:28 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 13:10:28 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:10:28 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:15:12 +00:00 [Information] Handling request: "GET" "/"
+06/12/2025 13:15:14 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:15:15 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 13:15:15 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 13:15:15 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:15:15 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:15:15 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 13:15:15 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:15:15 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 13:15:15 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 13:15:15 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 13:15:15 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:15:15 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:15:15 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:15:20 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/12/2025 13:15:20 +00:00 [Information] Started activity for WeatherForecast with TraceId: "70c9c7dc4b4f4d56e1e10bb7463438a9", SpanId: "c2d12e7734dbe5b1"
+06/12/2025 13:38:56 +00:00 [Information] Handling request: "GET" "/"
+06/12/2025 13:38:57 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:38:57 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 13:38:57 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 13:38:57 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 13:38:57 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 13:38:58 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:38:58 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:38:58 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 13:38:58 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 13:38:58 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:38:58 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:38:58 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:38:58 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:39:08 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/12/2025 13:39:08 +00:00 [Information] Started activity for WeatherForecast with TraceId: "7020c588c6e534fffbcc15f0e1bac1b1", SpanId: "94ac46e9f76ee614"
+06/12/2025 13:39:40 +00:00 [Information] Successfully fetched weather data. Items count: 8
+06/12/2025 13:39:40 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:39:40 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 13:39:40 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 13:39:40 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 13:39:40 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:39:40 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:39:40 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:39:40 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 13:39:40 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 13:39:40 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 13:39:40 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:39:40 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:39:40 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:44:56 +00:00 [Information] Handling request: "GET" "/"
+06/12/2025 13:44:59 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:45:00 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 13:45:00 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 13:45:00 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 13:45:00 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:45:00 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:45:00 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:45:00 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 13:45:00 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 13:45:00 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:45:00 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:45:00 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 13:45:01 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:45:02 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/12/2025 13:45:02 +00:00 [Information] Started activity for WeatherForecast with TraceId: "b4066dcbc5198b6592722d152d712fbf", SpanId: "58615963dcc1aac6"
+06/12/2025 13:46:07 +00:00 [Information] Successfully fetched weather data. Items count: 8
+06/12/2025 13:46:07 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:46:07 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 13:46:07 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 13:46:07 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 13:46:07 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 13:46:07 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 13:46:07 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:46:07 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:46:07 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 13:46:07 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:46:07 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:46:08 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:46:08 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:49:00 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/12/2025 13:49:00 +00:00 [Information] Started activity for WeatherForecast with TraceId: "66ccf849063434d022ad9a97835c7a6b", SpanId: "224984605ad4e8ee"
+06/12/2025 13:49:05 +00:00 [Information] Successfully fetched weather data. Items count: 8
+06/12/2025 13:49:05 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:49:05 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 13:49:05 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 13:49:05 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 13:49:05 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:49:05 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:49:05 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:49:05 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 13:49:05 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 13:49:05 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:49:05 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 13:49:05 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:49:05 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:49:06 +00:00 [Information] Handling request: "GET" "/favicon.ico"
+06/12/2025 13:49:06 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:53:44 +00:00 [Information] Handling request: "GET" "/"
+06/12/2025 13:53:45 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:53:46 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 13:53:46 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 13:53:46 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 13:53:46 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 13:53:46 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 13:53:46 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 13:53:46 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:53:46 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:53:46 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:53:46 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:53:46 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:53:46 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:53:48 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/12/2025 13:53:48 +00:00 [Information] Started activity for WeatherForecast with TraceId: "8962c70cbc3513f760e2e86b6e01eb49", SpanId: "59ac1e769640ea23"
+06/12/2025 13:58:26 +00:00 [Information] Handling request: "GET" "/"
+06/12/2025 13:58:28 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:58:30 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 13:58:30 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 13:58:30 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 13:58:30 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:58:30 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:58:30 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:58:31 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 13:58:31 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:58:31 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 13:58:31 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 13:58:31 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:58:31 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:58:52 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/12/2025 13:58:52 +00:00 [Information] Started activity for WeatherForecast with TraceId: "2c92105fe8dffb12c1a89c94f3fd3adb", SpanId: "0cb22274ae4e624c"
+06/12/2025 13:59:07 +00:00 [Information] Successfully fetched weather data. Items count: 8
+06/12/2025 13:59:08 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:08 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 13:59:08 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 13:59:08 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:08 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 13:59:08 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 13:59:08 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 13:59:08 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:08 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:09 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:08 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 13:59:10 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:10 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:12 +00:00 [Information] Handling request: "GET" "/Home/Login"
+06/12/2025 13:59:12 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:12 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 13:59:12 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 13:59:12 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 13:59:12 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:12 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:12 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 13:59:12 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:12 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 13:59:12 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:12 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 13:59:12 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:12 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:23 +00:00 [Information] Handling request: "POST" "/Home/Login"
+06/12/2025 13:59:25 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 302
+06/12/2025 13:59:25 +00:00 [Information] Handling request: "GET" "/"
+06/12/2025 13:59:25 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:25 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 13:59:25 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 13:59:25 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 13:59:25 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:25 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:25 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:26 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 13:59:26 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:26 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 13:59:26 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 13:59:26 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:26 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:29 +00:00 [Information] Handling request: "GET" "/WeatherForecast"
+06/12/2025 13:59:29 +00:00 [Information] Started activity for WeatherForecast with TraceId: "def26172a201e61b3ca9166a7c1ff72f", SpanId: "5530e88f1819d07d"
+06/12/2025 13:59:32 +00:00 [Information] Successfully fetched weather data. Items count: 8
+06/12/2025 13:59:32 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:32 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/css/bootstrap.min.css"
+06/12/2025 13:59:32 +00:00 [Information] Handling request: "GET" "/WeatherForecast.WebApp.styles.css"
+06/12/2025 13:59:32 +00:00 [Information] Handling request: "GET" "/css/site.css"
+06/12/2025 13:59:32 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:32 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:32 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:32 +00:00 [Information] Handling request: "GET" "/lib/jquery/dist/jquery.min.js"
+06/12/2025 13:59:32 +00:00 [Information] Handling request: "GET" "/js/site.js"
+06/12/2025 13:59:32 +00:00 [Information] Handling request: "GET" "/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+06/12/2025 13:59:32 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:33 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200
+06/12/2025 13:59:33 +00:00 [Information] OTEL-APP => Finished handling request. Response Status Code: 200

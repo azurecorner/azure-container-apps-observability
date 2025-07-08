@@ -16,3 +16,6 @@ src/datasynaca/datasynaca.Api/obj/Debug/net8.0/datasynaca.Api.GeneratedMSBuildEd
 /src/OtelReferenceApp/.vs
 /src/WeatherForecastApp/.vs
 /src/OtelCollectorConsoleApp/.vs/OtelCollectorConsoleApp
+/src/OtelCollectorConsoleApp/.vs/ProjectEvaluation
+/src/OtelReferenceApp/WeatherForecast.Database/WeatherForecast.Database.dbmdl
+/src/OtelReferenceApp/WeatherForecast.Database/WeatherForecast.Database.jfm

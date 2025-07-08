@@ -1,6 +1,0 @@
-05/11/2025 15:49:20 +00:00 [Warning] Using an in-memory repository. Keys will not be persisted to storage.
-05/11/2025 15:49:20 +00:00 [Warning] Neither user profile nor HKLM registry available. Using an ephemeral key repository. Protected data will be unavailable when application exits.
-05/11/2025 15:49:21 +00:00 [Warning] No XML encryptor configured. Key {db9a8053-b847-4d6f-bbd1-f1d63a4c2f5c} may be persisted to storage in unencrypted form.
-05/11/2025 15:50:47 +00:00 [Warning] Using an in-memory repository. Keys will not be persisted to storage.
-05/11/2025 15:50:47 +00:00 [Warning] Neither user profile nor HKLM registry available. Using an ephemeral key repository. Protected data will be unavailable when application exits.
-05/11/2025 15:50:47 +00:00 [Warning] No XML encryptor configured. Key {4200a0b9-04f7-4a4e-93ab-b0c2aa17f0c0} may be persisted to storage in unencrypted form.

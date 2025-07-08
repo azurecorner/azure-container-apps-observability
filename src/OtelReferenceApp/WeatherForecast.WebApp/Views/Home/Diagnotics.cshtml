@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewData["Title"] = "Diagnotics";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Diagnotics</h1>
+
+<ul>
+    <li><a asp-controller="Diagnostics" asp-action="SimulateWebAppError">Simulate Web App Error</a></li>
+    <li><a asp-controller="Diagnostics" asp-action="SimulateWebApiError">Simulate Web API Error</a></li>
+</ul>
