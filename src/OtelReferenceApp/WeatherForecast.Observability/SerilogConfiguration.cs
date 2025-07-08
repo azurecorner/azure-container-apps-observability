@@ -51,16 +51,16 @@ namespace WeatherForecast.Observability
                    .WriteTo.ApplicationInsights(
                        hostingContext.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"],
                        TelemetryConverter.Traces) // Use TelemetryConverter.Traces for log traces
-                   .WriteTo.OpenTelemetry(options =>
-                   {
-                       options.Endpoint = $"{hostingContext.Configuration["OLTP_ENDPOINT"]}/v1/logs";
-                       options.Protocol = Serilog.Sinks.OpenTelemetry.OtlpProtocol.Grpc;
+                   //.WriteTo.OpenTelemetry(options =>
+                   //{
+                   //    options.Endpoint = $"{hostingContext.Configuration["OLTP_ENDPOINT"]}/v1/logs";
+                   //    options.Protocol = Serilog.Sinks.OpenTelemetry.OtlpProtocol.Grpc;
 
-                       options.ResourceAttributes = new Dictionary<string, object>
-                       {
-                           ["service.name"] = serviceName
-                       };
-                   })
+                   //    options.ResourceAttributes = new Dictionary<string, object>
+                   //    {
+                   //        ["service.name"] = serviceName
+                   //    };
+                   //})
                     .WriteTo.OpenTelemetry(options =>
                     {
                         options.Endpoint = "https://collector.delightfulmoss-8b2af8d8.westeurope.azurecontainerapps.io/v1/logs";

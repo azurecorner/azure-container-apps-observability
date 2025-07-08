@@ -27,7 +27,7 @@ processors:
 
 exporters:
   azuremonitor:
-    connection_string: "InstrumentationKey=2f3cd063-dfb3-4ab0-9d3e-f3f643317f4a;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/;ApplicationId=d0f7d6eb-1c8d-4564-a8c0-b401eb70c70d"
+    connection_string: "${APPINSIGHTS_CONN_STRING}"
   logging:
     loglevel: debug
 

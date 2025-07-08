@@ -41,3 +41,41 @@ curl -v https://collector.delightfulmoss-8b2af8d8.westeurope.azurecontainerapps.
  -H "Content-Type: application/json" \
  -d '{"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"curl-test"}}]},"scopeSpans":[{"scope":{},"spans":[]}]}]}'
 
+
+# logs
+
+traces
+| where timestamp > ago(1h)
+| where severityLevel >= 3              // filter Warning/Error
+| project LogTime = timestamp,
+          Message = message,
+          Logger = customDimensions.CategoryName
+| order by LogTime desc
+
+# traces
+
+// HTTP requests
+requests
+| where timestamp > ago(1h)
+| project RequestTime = timestamp,
+          Name = name,
+          Duration = duration,
+          Success = success
+| order by RequestTime desc
+
+// External dependencies
+dependencies
+| where timestamp > ago(1h)
+| project DepTime = timestamp,
+          Target = target,
+          Type = type,
+          ResultCode = resultCode
+| order by DepTime desc
+
+# metrics
+
+customMetrics
+  | where timestamp > ago(1h)
+  | project Time = timestamp,
+            Type = "metric",
+            Name = name, value
