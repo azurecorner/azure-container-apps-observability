@@ -13,7 +13,7 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .AddOtlpExporter(options =>
     {
         // hard-coded OTLP HTTP endpoint with /v1/traces path
-        options.Endpoint = new Uri("https://collector.blueground-9681b7a3.uksouth.azurecontainerapps.io/v1/traces");
+        options.Endpoint = new Uri("https://collector.delightfulmoss-8b2af8d8.westeurope.azurecontainerapps.io/v1/traces");
         options.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.HttpProtobuf;
     })
     .Build();

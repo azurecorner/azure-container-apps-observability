@@ -6,25 +6,23 @@ param logAnalyticsWorkspaceName string = 'bg-log-analytics'
 param appInsightsName string = 'otel-insights'
 param storageAccountName string = 'bgsharedstorage'
 param fileShareName string = 'otelcollector'
-param otelImage string = 'otel/opentelemetry-collector-contrib:0.98.0'
-param mountPath string = '/etc/otelcol'
-param configFileName string = 'config.yaml'
 
+// === Log Analytics Workspace ===
 resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2020-10-01' = {
   name: logAnalyticsWorkspaceName
   location: location
-
   properties: {
-   retentionInDays: 30
-   features: {
-    searchVersion: 1
-   }
-   sku: {
-    name: 'PerGB2018'
-   } 
+    retentionInDays: 30
+    features: {
+      searchVersion: 1
+    }
+    sku: {
+      name: 'PerGB2018'
+    }
   }
 }
-// === Resource Definitions ===
+
+// === Application Insights ===
 resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   name: appInsightsName
   location: location
@@ -35,6 +33,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   }
 }
 
+// === Storage Account ===
 resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' = {
   name: storageAccountName
   location: location
@@ -47,21 +46,21 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' = {
   }
 }
 
-var storageKeys = listKeys(storageAccount.name, storageAccount.apiVersion)
+var storageKeys = storageAccount.listKeys()
 var storageAccountKey = storageKeys.keys[0].value
 
+// === Azure File Share ===
 resource fileShare 'Microsoft.Storage/storageAccounts/fileServices/shares@2024-01-01' = {
   name: '${storageAccount.name}/default/${fileShareName}'
-
   properties: {
-    shareQuota: 1024  // Quota in GB
+    shareQuota: 1024
     enabledProtocols: 'SMB'
     accessTier: 'Hot'
   }
 }
 
-
-resource containerEnv 'Microsoft.App/managedEnvironments@2023-05-01' = {
+// === Container App Environment ===
+resource containerEnv 'Microsoft.App/managedEnvironments@2025-01-01' = {
   name: containerAppEnvName
   location: location
   properties: {
@@ -69,8 +68,22 @@ resource containerEnv 'Microsoft.App/managedEnvironments@2023-05-01' = {
   }
 }
 
-// Container App
-resource containerApp 'Microsoft.App/containerApps@2023-05-01' = {
+// === File Share Mount into Container App Environment ===
+resource fileShareMount 'Microsoft.App/managedEnvironments/storages@2023-05-01' = {
+  parent: containerEnv
+  name: fileShareName
+  properties: {
+    azureFile: {
+      accountName: storageAccountName
+      shareName: fileShareName
+      accountKey: storageAccountKey
+      accessMode: 'ReadWrite'
+    }
+  }
+}
+
+// === Container App ===
+resource containerApp 'Microsoft.App/containerApps@2025-01-01' = {
   name: containerAppName
   location: location
   properties: {
@@ -78,21 +91,24 @@ resource containerApp 'Microsoft.App/containerApps@2023-05-01' = {
     configuration: {
       secrets: [
         {
-          name: 'storage-account-key'
-          value: storageAccountKey
-        }
-        {
           name: 'appinsights-conn'
           value: appInsights.properties.ConnectionString
         }
       ]
       activeRevisionsMode: 'Single'
+      ingress: {
+        external: true
+        targetPort: 4318
+        transport: 'auto'
+        allowInsecure: false
+      }
     }
     template: {
       containers: [
         {
           name: 'collector'
           image: 'otel/opentelemetry-collector-contrib:0.98.0'
+          //image: 'otel/opentelemetry-collector'
           command: []
           args: [
             '--config=/etc/otelcol/config.yaml'
@@ -104,7 +120,7 @@ resource containerApp 'Microsoft.App/containerApps@2023-05-01' = {
             }
           ]
           resources: {
-           cpu: json('0.5')
+            cpu: json('0.5')
             memory: '1.0Gi'
           }
           volumeMounts: [
@@ -129,14 +145,11 @@ resource containerApp 'Microsoft.App/containerApps@2023-05-01' = {
     }
   }
   dependsOn: [
-    containerEnv
-    appInsights
-    storageAccount
     fileShare
+    fileShareMount
   ]
 }
-output appInsightsConnectionString string = appInsights.properties.ConnectionString
-output containerAppUrl string = containerApp.properties.configuration.ingress.fqdn
-output storageAccountId string = storageAccount.id
-output fileShareId string = fileShare.id
-output containerAppFqdn string = containerApp.properties.fqdn  
+
+// === Outputs ===
+
+output containerAppFqdn string = containerApp.properties.latestRevisionFqdn 
