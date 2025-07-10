@@ -12,21 +12,19 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["WeatherForecast.WebApi/WeatherForecast.WebApi.csproj", "WeatherForecast.WebApi/"]
-COPY ["WeatherForecast.Infrastructure/WeatherForecast.Infrastructure.csproj", "WeatherForecast.Infrastructure/"]
-COPY ["WeatherForecast.Observability/WeatherForecast.Observability.csproj", "WeatherForecast.Observability/"]
-RUN dotnet restore "./WeatherForecast.WebApi/WeatherForecast.WebApi.csproj"
+COPY ["WebApi.csproj", "."]
+RUN dotnet restore "./WebApi.csproj"
 COPY . .
-WORKDIR "/src/WeatherForecast.WebApi"
-RUN dotnet build "./WeatherForecast.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/."
+RUN dotnet build "./WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./WeatherForecast.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "WeatherForecast.WebApi.dll"]
+ENTRYPOINT ["dotnet", "WebApi.dll"]
