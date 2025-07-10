@@ -14,7 +14,7 @@ builder.Services.AddObservability(serviceName, sourceName, builder.Configuration
 builder.Services.AddHttpClient();
 builder.Services.AddSingleton(TracerProvider.Default.GetTracer(serviceName));
 
-builder.AddSerilog(serviceName);
+builder.AddSerilog(serviceName, builder.Configuration);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddSwaggerGen(opts =>

@@ -30,6 +30,9 @@ namespace WebApi.Controllers
             })
             .ToArray();
 
+            // Fix for CA2017: Ensure the logging message template matches the number of parameters
+            _logger.LogInformation("WeatherForecast data generated successfully. Count: {Count}", result.Length);
+
             _logger.LogInformation("*************** Getting WeatherForecast  END ****************");
             return result;
         }

@@ -19,7 +19,10 @@ namespace WebApi.Extensions
                         new  ("service.name", serviceName),
                         new  ("environment", "dev"),
                         });
-            Console.WriteLine($"OLTP_ENDPOINT ==> {configuration["OLTP_ENDPOINT"]}");
+
+            var oltpEndpoint = $"{configuration["OLTP_ENDPOINT"]}" ?? throw new InvalidOperationException("OLTP_ENDPOINT configuration is missing or empty.");
+
+            Console.WriteLine($"OLTP_ENDPOINT ==> {oltpEndpoint}");
             // add the OpenTelemetry services
             var otelBuilder = services.AddOpenTelemetry();
 
@@ -38,16 +41,8 @@ namespace WebApi.Extensions
 
                  .AddOtlpExporter(options =>
                  {
-                     var oltpEndpoint = "https://collector.ashycoast-13bf4b21.westeurope.azurecontainerapps.io/v1/metrics";
-                     if (!string.IsNullOrEmpty(oltpEndpoint))
-                     {
-                         options.Endpoint = new Uri(oltpEndpoint);
-                         options.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.HttpProtobuf;
-                     }
-                     else
-                     {
-                         throw new InvalidOperationException("OLTP_ENDPOINT configuration is missing or empty.");
-                     }
+                     options.Endpoint = new Uri($"{oltpEndpoint}//v1/metrics");
+                     options.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.HttpProtobuf;
                  });
                 })
                 // add the tracing providers
@@ -77,16 +72,8 @@ namespace WebApi.Extensions
 
                                .AddOtlpExporter(options =>
                                {
-                                   var oltpEndpoint = configuration["OLTP_ENDPOINT"];
-                                   if (!string.IsNullOrEmpty(oltpEndpoint))
-                                   {
-                                       options.Endpoint = new Uri("https://collector.ashycoast-13bf4b21.westeurope.azurecontainerapps.io/v1/traces");
-                                       options.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.HttpProtobuf;
-                                   }
-                                   else
-                                   {
-                                       throw new InvalidOperationException("OLTP_ENDPOINT configuration is missing or empty.");
-                                   }
+                                   options.Endpoint = new Uri($"{oltpEndpoint}/v1/traces");
+                                   options.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.HttpProtobuf;
                                })
 
                               ;
@@ -101,8 +88,10 @@ namespace WebApi.Extensions
             routes.MapPrometheusScrapingEndpoint();
         }
 
-        public static void AddSerilog(this WebApplicationBuilder builder, string serviceName)
+        public static void AddSerilog(this WebApplicationBuilder builder, string serviceName, IConfiguration configuration)
         {
+            var oltpEndpoint = $"{configuration["OLTP_ENDPOINT"]}" ?? throw new InvalidOperationException("OLTP_ENDPOINT configuration is missing or empty.");
+            Console.WriteLine($"OLTP_ENDPOINT ==> {oltpEndpoint}");
             builder.Host.UseSerilog((hostingContext, loggerConfiguration) =>
                loggerConfiguration
                    .ReadFrom.Configuration(hostingContext.Configuration)
@@ -111,7 +100,7 @@ namespace WebApi.Extensions
 
                     .WriteTo.OpenTelemetry(options =>
                     {
-                        options.Endpoint = "https://collector.ashycoast-13bf4b21.westeurope.azurecontainerapps.io/v1/logs";
+                        options.Endpoint = $"{oltpEndpoint}/v1/logs";
                         options.Protocol = Serilog.Sinks.OpenTelemetry.OtlpProtocol.HttpProtobuf;
 
                         options.ResourceAttributes = new Dictionary<string, object>
