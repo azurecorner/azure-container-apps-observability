@@ -1,155 +1,55 @@
-// === Parameters ===
 param location string = resourceGroup().location
-param containerAppEnvName string = 'blueground-9681b7a3'
-param containerAppName string = 'collector'
-param logAnalyticsWorkspaceName string = 'bg-log-analytics'
-param appInsightsName string = 'otel-insights'
-param storageAccountName string = 'bgsharedstorage'
-param fileShareName string = 'otelcollector'
 
-// === Log Analytics Workspace ===
-resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2020-10-01' = {
-  name: logAnalyticsWorkspaceName
+param runScript string = loadTextContent('./scripts/run.ps1')
+var configBase64Raw = loadTextContent('./config/config.yaml')
+var configBase64 = base64(configBase64Raw)
+
+resource managedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2024-11-30' = {
+  name: 'datasyncManagedIdentity'
   location: location
-  properties: {
-    retentionInDays: 30
-    features: {
-      searchVersion: 1
-    }
-    sku: {
-      name: 'PerGB2018'
-    }
+  
+}
+
+module storageAccount 'modules/storage_account.bicep' = {
+  name: 'storage-account'
+  params: {
+    location: location
+    storageAccountName: 'bgsharedstorage'
+    fileShareName: 'otelcollector'
+    managedIdentityPrincipalId: managedIdentity.properties.principalId
   }
 }
 
-// === Application Insights ===
-resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
-  name: appInsightsName
-  location: location
-  kind: 'web'
-  properties: {
-    Application_Type: 'web'
-    WorkspaceResourceId: logAnalytics.id
-  }
-}
 
-// === Storage Account ===
-resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' = {
-  name: storageAccountName
-  location: location
-  sku: {
-    name: 'Standard_LRS'
+module deploymentScript 'modules/deployment-script.bicep' =  {
+  name: 'deployment-script'
+  params: {
+    location: location
+    storageAccountName: 'bgsharedstorage'
+    storageShareName: 'otelcollector'
+    configBase64: configBase64
+    managedIdentityId: managedIdentity.id
+    runScript: runScript
   }
-  kind: 'StorageV2'
-  properties: {
-    accessTier: 'Hot'
-  }
-}
-
-var storageKeys = storageAccount.listKeys()
-var storageAccountKey = storageKeys.keys[0].value
-
-// === Azure File Share ===
-resource fileShare 'Microsoft.Storage/storageAccounts/fileServices/shares@2024-01-01' = {
-  name: '${storageAccount.name}/default/${fileShareName}'
-  properties: {
-    shareQuota: 1024
-    enabledProtocols: 'SMB'
-    accessTier: 'Hot'
-  }
-}
-
-// === Container App Environment ===
-resource containerEnv 'Microsoft.App/managedEnvironments@2025-01-01' = {
-  name: containerAppEnvName
-  location: location
-  properties: {
-    daprAIConnectionString: appInsights.properties.ConnectionString
-  }
-}
-
-// === File Share Mount into Container App Environment ===
-resource fileShareMount 'Microsoft.App/managedEnvironments/storages@2023-05-01' = {
-  parent: containerEnv
-  name: fileShareName
-  properties: {
-    azureFile: {
-      accountName: storageAccountName
-      shareName: fileShareName
-      accountKey: storageAccountKey
-      accessMode: 'ReadWrite'
-    }
-  }
-}
-
-// === Container App ===
-resource containerApp 'Microsoft.App/containerApps@2025-01-01' = {
-  name: containerAppName
-  location: location
-  properties: {
-    managedEnvironmentId: containerEnv.id
-    configuration: {
-      secrets: [
-        {
-          name: 'appinsights-conn'
-          value: appInsights.properties.ConnectionString
-        }
-      ]
-      activeRevisionsMode: 'Single'
-      ingress: {
-        external: true
-        targetPort: 4318
-        transport: 'auto'
-        allowInsecure: false
-      }
-    }
-    template: {
-      containers: [
-        {
-          name: 'collector'
-          image: 'otel/opentelemetry-collector-contrib:0.98.0'
-          //image: 'otel/opentelemetry-collector'
-          command: []
-          args: [
-            '--config=/etc/otelcol/config.yaml'
-          ]
-          env: [
-            {
-              name: 'APPINSIGHTS_CONN_STRING'
-              secretRef: 'appinsights-conn'
-            }
-          ]
-          resources: {
-            cpu: json('0.5')
-            memory: '1.0Gi'
-          }
-          volumeMounts: [
-            {
-              mountPath: '/etc/otelcol'
-              volumeName: 'config'
-            }
-          ]
-        }
-      ]
-      volumes: [
-        {
-          name: 'config'
-          storageType: 'AzureFile'
-          storageName: fileShareName
-        }
-      ]
-      scale: {
-        minReplicas: 1
-        maxReplicas: 1
-      }
-    }
-  }
+  
   dependsOn: [
-    fileShare
-    fileShareMount
+    storageAccount
   ]
 }
-
-// === Outputs ===
-
-output containerAppFqdn string = containerApp.properties.latestRevisionFqdn 
+ 
+module containerApp 'modules/otel-collector.bicep' = {
+  name: 'container-app'
+  params: {
+          location: location
+          containerAppEnvName  : 'blueground-9681b7a3'
+          containerAppName  : 'collector'
+          logAnalyticsWorkspaceName  : 'bg-log-analytics'
+          appInsightsName  : 'otel-insights'
+          storageAccountName  : 'bgsharedstorage'
+          fileShareName  : 'otelcollector'
+   }
+  
+  dependsOn: [
+    deploymentScript
+  ]
+}
