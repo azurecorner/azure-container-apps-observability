@@ -22,3 +22,8 @@ src/datasynaca/datasynaca.Api/obj/Debug/net8.0/datasynaca.Api.GeneratedMSBuildEd
 src/OtelReferenceApp/WeatherForecast.WebApi/Logs/log.txt
 src/OtelReferenceApp/WeatherForecast.WebApi/Logs/log.txt
 /deploy/src/OtelReferenceApp/.vs
+/deploy/src/OtelReferenceApp/obj/Docker
+/deploy/src/OtelReferenceApp/WebApi/bin/Debug/net9.0
+/deploy/src/OtelReferenceApp/WebApi/obj
+/src/OtelReferenceApp/.dockerignore
+/src/OtelReferenceApp/OtelReferenceApp.slnLaunch.user
