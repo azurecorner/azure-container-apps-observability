@@ -1,11 +1,10 @@
 
-$acrName="acrdatasynchro"
+$acrName="bgcontainerregistry"
 az acr login --name $acrName
 
-docker build -t "$acrName.azurecr.io/weatherforecast-web-api:latest" . -f .\WeatherForecast.WebApi\Dockerfile --no-cache
+cd .\src\OtelReferenceApp\
+docker build -t "$acrName.azurecr.io/web-api:latest" -f .\WebApi\Dockerfile . --no-cache
 
-docker push "$acrName.azurecr.io/weatherforecast-web-api:latest"
 
-docker build -t "$acrName.azurecr.io/weatherforecast-web-app:latest" . -f .\WeatherForecast.WebApp\Dockerfile --no-cache
+docker push "$acrName.azurecr.io/web-api:latest"
 
-docker push "$acrName.azurecr.io/weatherforecast-web-app:latest"

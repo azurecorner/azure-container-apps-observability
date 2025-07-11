@@ -2,36 +2,10 @@
 param location string = resourceGroup().location
 param containerAppEnvName string = 'blueground-9681b7a3'
 param containerAppName string = 'collector'
-param logAnalyticsWorkspaceName string = 'bg-log-analytics'
 param appInsightsName string = 'otel-insights'
 param storageAccountName string = 'bgsharedstorage'
 param fileShareName string = 'otelcollector'
 
-// === Log Analytics Workspace ===
-resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2020-10-01' = {
-  name: logAnalyticsWorkspaceName
-  location: location
-  properties: {
-    retentionInDays: 30
-    features: {
-      searchVersion: 1
-    }
-    sku: {
-      name: 'PerGB2018'
-    }
-  }
-}
-
-// === Application Insights ===
-resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
-  name: appInsightsName
-  location: location
-  kind: 'web'
-  properties: {
-    Application_Type: 'web'
-    WorkspaceResourceId: logAnalytics.id
-  }
-}
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' existing = {
   name: storageAccountName
@@ -40,15 +14,16 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' existing 
 var storageKeys = storageAccount.listKeys()
 var storageAccountKey = storageKeys.keys[0].value
 
-
 // === Container App Environment ===
-resource containerEnv 'Microsoft.App/managedEnvironments@2025-01-01' = {
+resource containerEnv 'Microsoft.App/managedEnvironments@2025-01-01' existing = {
   name: containerAppEnvName
-  location: location
-  properties: {
-    daprAIConnectionString: appInsights.properties.ConnectionString
-  }
+  
 }
+
+resource appInsights 'Microsoft.Insights/components@2020-02-02' existing = {
+  name: appInsightsName
+
+} 
 
 // === File Share Mount into Container App Environment ===
 resource fileShareMount 'Microsoft.App/managedEnvironments/storages@2023-05-01' = {
@@ -134,3 +109,4 @@ resource containerApp 'Microsoft.App/containerApps@2025-01-01' = {
 // === Outputs ===
 
 output containerAppFqdn string = containerApp.properties.latestRevisionFqdn 
+
