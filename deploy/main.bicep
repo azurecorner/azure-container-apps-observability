@@ -46,10 +46,17 @@ resource containerEnv 'Microsoft.App/managedEnvironments@2025-01-01' = {
   location: location
   properties: {
     daprAIConnectionString: appInsights.properties.ConnectionString
+     appLogsConfiguration: {
+      destination: 'log-analytics'
+      logAnalyticsConfiguration: {
+        customerId: logAnalytics.properties.customerId
+        sharedKey: logAnalytics.listKeys().primarySharedKey
+      }
+    }
   }
 }
 
-
+// === Managed Identity for Container Registry ===
 module storageAccount 'modules/storage_account.bicep' = {
   name: 'storage-account'
   params: {
@@ -60,7 +67,7 @@ module storageAccount 'modules/storage_account.bicep' = {
   }
 }
 
-
+// === Deployment Script for Configurations ===
 module deploymentScript 'modules/deployment-script.bicep' =  {
   name: 'deployment-script'
   params: {
@@ -76,7 +83,9 @@ module deploymentScript 'modules/deployment-script.bicep' =  {
     storageAccount
   ]
 }
- 
+
+// === OpenTelemetry Collector Container App ===
+// This module deploys the OpenTelemetry Collector as a Container App
 module otelcollector 'modules/otel-collector.bicep' = {
   name: 'container-app'
   params: {
@@ -93,7 +102,8 @@ module otelcollector 'modules/otel-collector.bicep' = {
   ]
 }
 
-
+// === Container Registry ===
+// This module sets up a Container Registry for storing application images
 module containerRegistry 'modules/container-registry.bicep' = {
   name: 'container-registry'
   params: {
@@ -104,8 +114,9 @@ module containerRegistry 'modules/container-registry.bicep' = {
 }
 
 
-module frontend 'modules/web-api.bicep' = if (deployApps) {
-  name: 'web-app'
+
+module backend 'modules/web-api.bicep' = if (deployApps) {
+  name: 'web-api'
   params: {
     containerAppEnvName: containerAppEnvName
     containerRegistryName: containerRegistry.outputs.name
@@ -113,6 +124,19 @@ module frontend 'modules/web-api.bicep' = if (deployApps) {
     userAssignedIdentityName: managedIdentity.name
     imageName: '${containerRegistry.outputs.serverName}/web-api:latest'
     oltp_endpoind: 'https://${otelcollector.outputs.containerAppFqdn}'
+   }
+}
+ 
+module frontend 'modules/web-app.bicep' = if (deployApps) {
+  name: 'web-app'
+  params: {
+    containerAppEnvName: containerAppEnvName
+    containerRegistryName: containerRegistry.outputs.name
+    location: location
+    userAssignedIdentityName: managedIdentity.name
+    imageName: '${containerRegistry.outputs.serverName}/web-app:latest'
+    oltp_endpoind: 'https://${otelcollector.outputs.containerAppFqdn}'
+    backendFqdn: backend.outputs.fqdn
    }
 }
  

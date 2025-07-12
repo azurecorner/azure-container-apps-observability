@@ -15,9 +15,12 @@ param imageName string
 @secure()
 param oltp_endpoind string 
 
+@description('The Backend API FQDN that this Frontend will communicate with')
+param backendFqdn string
+
 param userAssignedIdentityName string 
 
-var containerAppName = 'weatherforecast-api'
+var containerAppName = 'weatherforecast-app'
 
 resource env 'Microsoft.App/managedEnvironments@2025-01-01' existing = {
   name: containerAppEnvName
@@ -36,7 +39,7 @@ resource userAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@
   name: userAssignedIdentityName
 }
 
-resource containerApp 'Microsoft.App/containerApps@2025-01-01' = {
+resource frontend 'Microsoft.App/containerApps@2025-01-01' = {
   name: containerAppName
   location: location
 
@@ -93,6 +96,10 @@ resource containerApp 'Microsoft.App/containerApps@2025-01-01' = {
               name: 'OLTP_ENDPOINT'
               secretRef: 'otlp-endpoint'
             }
+             {
+              name: 'WEBAPI_URL'
+              value: 'https://${backendFqdn}'
+            }
            
           ]
           resources: {
@@ -114,7 +121,3 @@ resource containerApp 'Microsoft.App/containerApps@2025-01-01' = {
     }
   }
 }
-
-
-@description('The FQDN for the Backend API')
-output fqdn string = containerApp.properties.configuration.ingress.fqdn
