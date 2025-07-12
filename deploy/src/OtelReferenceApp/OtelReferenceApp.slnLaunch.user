@@ -3,11 +3,11 @@
     "Name": "New Profile",
     "Projects": [
       {
-        "Path": "WeatherForecast.WebApi\\WeatherForecast.WebApi.csproj",
+        "Path": "WebApi\\WebApi.csproj",
         "Action": "Start"
       },
       {
-        "Path": "WeatherForecast.WebApp\\WeatherForecast.WebApp.csproj",
+        "Path": "WebApp\\WebApp.csproj",
         "Action": "Start"
       }
     ]

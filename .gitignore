@@ -27,3 +27,5 @@ src/OtelReferenceApp/WeatherForecast.WebApi/Logs/log.txt
 /deploy/src/OtelReferenceApp/WebApi/obj
 /src/OtelReferenceApp/.dockerignore
 /src/OtelReferenceApp/OtelReferenceApp.slnLaunch.user
+/deploy/src/OtelReferenceApp/WebApp/bin/Debug/net9.0
+/deploy/src/OtelReferenceApp/WebApp/obj
