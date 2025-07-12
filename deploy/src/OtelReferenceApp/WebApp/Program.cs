@@ -1,3 +1,5 @@
+using Observability;
+
 namespace WebApp
 {
     public class Program
@@ -6,6 +8,10 @@ namespace WebApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            var serviceName = "WeatherForecast.WebApp";
+            string sourceName = "WebApp";
+            builder.Services.AddObservability(serviceName, sourceName, builder.Configuration);
+            builder.AddSerilog(serviceName, builder.Configuration);
             builder.Services.AddHttpClient("WebApi", client =>
             {
                 client.BaseAddress = new Uri(builder.Configuration["WEBAPI_URL"] ?? throw new InvalidOperationException("WEBAPI_URL configuration is missing or empty."));
@@ -34,7 +40,7 @@ namespace WebApp
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}")
                 .WithStaticAssets();
-
+            app.MapObservability();
             app.Run();
         }
     }

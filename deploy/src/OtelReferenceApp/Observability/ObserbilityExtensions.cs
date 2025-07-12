@@ -1,9 +1,13 @@
-﻿using OpenTelemetry.Metrics;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Serilog;
 
-namespace WebApi.Extensions
+namespace Observability
 {
     public static class ObserbilityExtensions
     {

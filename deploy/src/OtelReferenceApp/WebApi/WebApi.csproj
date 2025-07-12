@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -13,35 +13,11 @@
 	  <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
 	  <PackageReference Include="Swashbuckle.AspNetCore" Version="8.0.0" />
 
-	  <!--SERILOG-->
+	
+  </ItemGroup>
 
-	  <PackageReference Include="Serilog" Version="4.2.0" />
-	  <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
-	  <PackageReference Include="Serilog.Enrichers.Environment" Version="3.0.1" />
-	  <PackageReference Include="Serilog.Enrichers.Thread" Version="4.0.0" />
-	  <PackageReference Include="Serilog.Extensions.Logging" Version="9.0.1" />
-	  <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
-	  <PackageReference Include="Serilog.Settings.Configuration" Version="9.0.0" />
-	  <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
-	  <PackageReference Include="Serilog.Sinks.OpenTelemetry" Version="4.1.1" />
-	  <PackageReference Include="Serilog.Sinks.ApplicationInsights" Version="4.1.0-dev-02304" />
-
-	  <!-- OPENTELEMETRY -->
-
-	  <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.3" />
-	  <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.11.2" />
-	  <PackageReference Include="OpenTelemetry.Exporter.Prometheus.AspNetCore" Version="1.11.2-beta.1" />
-	  <PackageReference Include="OpenTelemetry.Exporter.Zipkin" Version="1.11.2" />
-	  <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.11.2" />
-	  <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.11.1" />
-	  <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.11.0-beta.2" />
-	  <PackageReference Include="OpenTelemetry.Instrumentation.EventCounters" Version="1.5.1-alpha.1" />
-	  <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.11.2" />
-	  <PackageReference Include="OpenTelemetry.Instrumentation.Process" Version="1.11.0-beta.2" />
-	  <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.11.1" />
-	  <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.11.1" />
-	  <PackageReference Include="Azure.Monitor.OpenTelemetry.AspNetCore" Version="1.3.0-beta.2" />
-	  <PackageReference Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.11.0-beta.2" />
+  <ItemGroup>
+    <ProjectReference Include="..\Observability\Observability.csproj" />
   </ItemGroup>
 
 </Project>

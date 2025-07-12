@@ -29,3 +29,7 @@ src/OtelReferenceApp/WeatherForecast.WebApi/Logs/log.txt
 /src/OtelReferenceApp/OtelReferenceApp.slnLaunch.user
 /deploy/src/OtelReferenceApp/WebApp/bin/Debug/net9.0
 /deploy/src/OtelReferenceApp/WebApp/obj
+/deploy/src/OtelReferenceApp/Observability/bin/Debug/net9.0
+/deploy/src/OtelReferenceApp/Observability/obj
+/deploy/src/OtelReferenceApp/WebApi/Logs/log.txt
+*.txt
