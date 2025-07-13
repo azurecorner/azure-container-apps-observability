@@ -1,5 +1,5 @@
 
-$acrName="bgcontainerregistry"
+$acrName="datasyncotelcr"
 az acr login --name $acrName
 
 cd .\src\OtelReferenceApp\

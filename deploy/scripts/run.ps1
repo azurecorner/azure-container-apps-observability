@@ -10,24 +10,24 @@ param(
     [string]$STORAGE_SHARE_NAME,
 
      [Parameter(Mandatory = $true)]
-    [string]$sqlScriptBase64
+    [string]$otelScriptBase64
 )
 
-# Ensure the SqlServer module is installed
+# Ensure the az module is installed
 try {
     if (-not (Get-Module -ListAvailable -Name Az)) {
-        Write-Output "Installing SqlServer module..."
+        Write-Output "Installing az module..."
         Install-Module -Name Az  -Force -AllowClobber -Scope CurrentUser
     }
 } catch {
-    Write-Error "Error installing SqlServer module: $_"
+    Write-Error "Error installing az module: $_"
     exit 1
 }
 
 
 
-# Decode the Base64-encoded SQL script
-$sqlScript = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($sqlScriptBase64))
+# Decode the Base64-encoded otel script
+$otelScript = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($otelScriptBase64))
 
 # Determine the correct temporary storage path within Azure Deployment Scripts
 $tempFolder = if ($Env:AZ_SCRIPTS_TEMP) { $Env:AZ_SCRIPTS_TEMP } else { "/mnt/azscripts/azscriptinput" }
@@ -38,11 +38,11 @@ if (!(Test-Path $tempFolder)) {
     New-Item -ItemType Directory -Path $tempFolder -Force
 }
 
-# Save the decoded SQL script to a temporary file
-$tempSqlFile = Join-Path $tempFolder "config.yaml"
-Set-Content -Path $tempSqlFile -Value $sqlScript
+# Save the decoded otel script to a temporary file
+$tempotelFile = Join-Path $tempFolder "config.yaml"
+Set-Content -Path $tempotelFile -Value $otelScript
 
-Write-Output "config.yaml => : [$tempSqlFile] ..."
+Write-Output "config.yaml => : [$tempotelFile] ..."
 
 
       Write-Output "Getting storage account key..."
@@ -54,7 +54,7 @@ Write-Output "config.yaml => : [$tempSqlFile] ..."
       
 $result = Set-AzStorageFileContent `
   -ShareName $STORAGE_SHARE_NAME `
-  -Source $tempSqlFile `
+  -Source $tempotelFile `
   -Path "/" `
   -Context $ctx `
   -Force `

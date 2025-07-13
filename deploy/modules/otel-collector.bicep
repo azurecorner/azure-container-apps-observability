@@ -1,10 +1,10 @@
 // === Parameters ===
 param location string = resourceGroup().location
-param containerAppEnvName string = 'blueground-9681b7a3'
-param containerAppName string = 'collector'
-param appInsightsName string = 'otel-insights'
-param storageAccountName string = 'bgsharedstorage'
-param fileShareName string = 'otelcollector'
+param containerAppEnvName string 
+param containerAppName string 
+param appInsightsName string 
+param storageAccountName string 
+param fileShareName string 
 
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' existing = {

@@ -7,7 +7,7 @@ param containerAppEnvName string
 @description('The name of the Container Registry that this Container App pull images')
 param containerRegistryName string
 
-param appInsightsName string = 'otel-insights'
+param appInsightsName string 
 
 @description('The container image that this Container App will use')
 param imageName string

@@ -3,11 +3,11 @@ param storageAccountName string
 param storageShareName string
 param runScript string
 param configBase64 string
-param managedIdentityId string = 'datasyncManagedIdentity'
+param managedIdentityId string
 
 #disable-next-line BCP081
 resource runSqlDeployment 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
-  name: 'run-sql-deployment'
+  name: 'run-script-deployment'
   location: location
 
      identity: {
@@ -24,9 +24,9 @@ resource runSqlDeployment 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
     forceUpdateTag: '1'
     scriptContent: runScript
     containerSettings: {
-      containerGroupName: 'cn-run-sql-deployment'
+      containerGroupName: 'cn-run-otel-deployment'
     }
-    arguments: '-RESOURCEGROUP_NAME "${resourceGroup().name}"  -STORAGE_ACCOUNT_NAME "${storageAccountName}" -STORAGE_SHARE_NAME "${storageShareName}" -sqlScriptBase64 "${configBase64}" '
+    arguments: '-RESOURCEGROUP_NAME "${resourceGroup().name}"  -STORAGE_ACCOUNT_NAME "${storageAccountName}" -STORAGE_SHARE_NAME "${storageShareName}" -otelScriptBase64 "${configBase64}" '
   }
 }
 

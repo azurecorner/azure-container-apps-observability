@@ -3,7 +3,7 @@
 // param logAnalyticsWorkspaceName string = 'bg-log-analytics'
 // param appInsightsName string = 'otel-insights'
 // param containerAppEnvName string = 'blueground-9681b7a3'
-// param containerRegistryName string = 'bgcontainerregistry'
+// param containerRegistryName string = 'datasyncotelcr'
 // param deployApps bool =false
 // param runScript string = loadTextContent('./scripts/run.ps1')
 // var configBase64Raw = loadTextContent('./config/config.yaml')

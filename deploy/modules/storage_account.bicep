@@ -1,6 +1,6 @@
 param location string = resourceGroup().location
-param storageAccountName string = 'bgsharedstorage'
-param fileShareName string = 'otelcollector'
+param storageAccountName string
+param fileShareName string 
 
 param managedIdentityPrincipalId string
 

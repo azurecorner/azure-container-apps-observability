@@ -17,11 +17,16 @@ file make_collector_app_insight.sh
 
 
 
+$subscriptionId = (Get-AzContext).Subscription.Id
+az account set --subscription $subscriptionId
 
-az deployment group create  --resource-group appinsight-collectordatasync --template-file main.bicep 
+$resourceGroupName = "RG-ACA-OTEL-COLLECTOR"
+New-AzResourceGroup -Name $resourceGroupName -Location "francecentral"
+
+az deployment group create  --resource-group $resourceGroupName --template-file main.bicep 
 
 
-az deployment group create  --resource-group appinsight-collectordatasync --template-file main.bicep  -deployApps $true
+az deployment group create  --resource-group $resourceGroupName --template-file main.bicep --parameters deployApps=true
 
 CONTAINER_APP_NAME=collector
 RESOURCE_GROUP=honeycomb-collectordatasync
@@ -33,7 +38,7 @@ az containerapp exec \
   --command "ls -l /etc/otelcol && cat /etc/otelcol/config.yaml"
 
 
-az containerapp logs show  --name collector  --resource-group appinsight-collectordatasync --follow
+az containerapp logs show  --name collector  --resource-group ACA-OTEL-COLLECTOR --follow
 
 # test
 
@@ -46,7 +51,7 @@ curl -v https://collector.delightfulmoss-8b2af8d8.westeurope.azurecontainerapps.
 
 traces
 | where timestamp > ago(1h)
-| where severityLevel >= 3              // filter Warning/Error
+| where severityLevel >= 1              // filter Warning/Error
 | project LogTime = timestamp,
           Message = message,
           Logger = customDimensions.CategoryName

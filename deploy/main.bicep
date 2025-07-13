@@ -1,15 +1,18 @@
 param location string = resourceGroup().location
-param logAnalyticsWorkspaceName string = 'bg-log-analytics'
-param appInsightsName string = 'otel-insights'
-param containerAppEnvName string = 'blueground-9681b7a3'
-param containerRegistryName string = 'bgcontainerregistry'
-param deployApps bool =true
+param logAnalyticsWorkspaceName string = 'datasync-otel-law'
+param appInsightsName string = 'datasync-otel-insights'
+param storageAccountName string = 'datasyncotelstorage'
+param fileShareName string = 'otelcollector'
+param containerAppEnvName string = 'datasync-otel-env'
+param containerRegistryName string = 'datasyncotelcr'
+param userAssignedIdentityName string = 'datasync-otel-uami'
+param deployApps bool = false
 param runScript string = loadTextContent('./scripts/run.ps1')
 var configBase64Raw = loadTextContent('./config/config.yaml')
 var configBase64 = base64(configBase64Raw)
 
 resource managedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2024-11-30' = {
-  name: 'datasyncManagedIdentity'
+  name: userAssignedIdentityName
   location: location
   
 }
@@ -61,8 +64,8 @@ module storageAccount 'modules/storage_account.bicep' = {
   name: 'storage-account'
   params: {
     location: location
-    storageAccountName: 'bgsharedstorage'
-    fileShareName: 'otelcollector'
+    storageAccountName: storageAccountName
+    fileShareName: fileShareName
     managedIdentityPrincipalId: managedIdentity.properties.principalId
   }
 }
@@ -72,8 +75,8 @@ module deploymentScript 'modules/deployment-script.bicep' =  {
   name: 'deployment-script'
   params: {
     location: location
-    storageAccountName: 'bgsharedstorage'
-    storageShareName: 'otelcollector'
+    storageAccountName: storageAccountName
+    storageShareName: fileShareName
     configBase64: configBase64
     managedIdentityId: managedIdentity.id
     runScript: runScript
@@ -91,14 +94,15 @@ module otelcollector 'modules/otel-collector.bicep' = {
   params: {
           location: location
           containerAppEnvName  : containerAppEnvName
-          containerAppName  : 'collector'
-          appInsightsName  : 'otel-insights'
-          storageAccountName  : 'bgsharedstorage'
-          fileShareName  : 'otelcollector'
+          containerAppName  : 'otel-collector'
+          appInsightsName  : appInsightsName
+          storageAccountName  : storageAccountName
+          fileShareName  : fileShareName
    }
   
   dependsOn: [
     deploymentScript
+    containerEnv
   ]
 }
 
@@ -122,6 +126,7 @@ module backend 'modules/web-api.bicep' = if (deployApps) {
     containerRegistryName: containerRegistry.outputs.name
     location: location
     userAssignedIdentityName: managedIdentity.name
+    appInsightsName: appInsights.name
     imageName: '${containerRegistry.outputs.serverName}/web-api:latest'
     oltp_endpoind: 'https://${otelcollector.outputs.containerAppFqdn}'
    }
@@ -132,6 +137,7 @@ module frontend 'modules/web-app.bicep' = if (deployApps) {
   params: {
     containerAppEnvName: containerAppEnvName
     containerRegistryName: containerRegistry.outputs.name
+    appInsightsName: appInsights.name
     location: location
     userAssignedIdentityName: managedIdentity.name
     imageName: '${containerRegistry.outputs.serverName}/web-app:latest'
