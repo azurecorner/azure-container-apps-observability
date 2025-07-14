@@ -94,7 +94,7 @@ module otelcollector 'modules/otel-collector.bicep' = {
   params: {
           location: location
           containerAppEnvName  : containerAppEnvName
-          containerAppName  : 'otel-collector'
+          containerAppName  : 'datasync-otel-collector'
           appInsightsName  : appInsightsName
           storageAccountName  : storageAccountName
           fileShareName  : fileShareName
@@ -108,7 +108,7 @@ module otelcollector 'modules/otel-collector.bicep' = {
 
 // === Container Registry ===
 // This module sets up a Container Registry for storing application images
-module containerRegistry 'modules/container-registry.bicep' = {
+module containerRegistry 'modules/container-registry.bicep' =   {
   name: 'container-registry'
   params: {
     crName: containerRegistryName

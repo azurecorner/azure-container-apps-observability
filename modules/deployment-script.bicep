@@ -7,7 +7,7 @@ param managedIdentityId string
 
 #disable-next-line BCP081
 resource runSqlDeployment 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
-  name: 'run-script-deployment'
+  name: 'datasync-run-script-deployment'
   location: location
 
      identity: {

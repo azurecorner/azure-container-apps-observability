@@ -1,4 +1,4 @@
-@description('The location where the Backend API will be deployed to')
+@description('The location where the Frontend UI will be deployed to')
 param location string
 
 @description('The Container App environment that the Container App will be deployed to')
@@ -7,48 +7,44 @@ param containerAppEnvName string
 @description('The name of the Container Registry that this Container App pull images')
 param containerRegistryName string
 
-@description('The name of the Key Vault that this Container App will pull secrets from')
-param keyVaultName string
+param appInsightsName string 
 
 @description('The container image that this Container App will use')
 param imageName string
 
+@secure()
+param oltp_endpoind string 
+
 param userAssignedIdentityName string 
 
-@description('The tags that will be applied to the Backend API')
-param tags object
-
-var containerAppName = 'dayasync-weatherforecast-api'
-
+var containerAppName = 'weatherforecast-api'
 
 resource env 'Microsoft.App/managedEnvironments@2025-01-01' existing = {
   name: containerAppEnvName
 }
 
-#disable-next-line BCP081
 resource containerRegistry 'Microsoft.ContainerRegistry/registries@2025-04-01' existing = {
   name: containerRegistryName
 }
 
-resource keyVault 'Microsoft.KeyVault/vaults@2024-11-01' existing = {
-  name: keyVaultName
-}
+resource appInsights 'Microsoft.Insights/components@2020-02-02' existing = {
+  name: appInsightsName
 
+} 
 
 resource userAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2024-11-30' existing = {
   name: userAssignedIdentityName
 }
 
-#disable-next-line BCP081
-resource backendApi 'Microsoft.App/containerApps@2025-01-01' = {
+resource containerApp 'Microsoft.App/containerApps@2025-01-01' = {
   name: containerAppName
   location: location
-  tags: tags
+
   properties: {
     managedEnvironmentId: env.id
     configuration: {
       activeRevisionsMode: 'Multiple'
-      ingress: {
+    ingress: {
         external: false
         targetPort: 8080
         transport: 'http'
@@ -63,18 +59,15 @@ resource backendApi 'Microsoft.App/containerApps@2025-01-01' = {
       secrets: [
         {
           name: 'app-insights-key'
-          keyVaultUrl: 'https://${keyVault.name}.vault.azure.net/secrets/appinsights-instrumentationkey'
-          identity: userAssignedIdentity.id
+          value: appInsights.properties.InstrumentationKey
         }
         {
           name: 'app-insights-connection-string'
-          keyVaultUrl: 'https://${keyVault.name}.vault.azure.net/secrets/appinsights-connectionstring'
-          identity: userAssignedIdentity.id
+          value: appInsights.properties.ConnectionString
         }
         {
-          name: 'sqlserver-connectionstring'
-          keyVaultUrl: 'https://${keyVault.name}.vault.azure.net/secrets/sqlserver-connectionstring'
-          identity: userAssignedIdentity.id
+          name: 'otlp-endpoint'
+          value: oltp_endpoind
         }
       ]
     }
@@ -84,23 +77,24 @@ resource backendApi 'Microsoft.App/containerApps@2025-01-01' = {
           name: containerAppName
           image: imageName
           env: [
-                {
-                  name: 'ASPNETCORE_ENVIRONMENT'
-                  value: 'ContainerApps'
-                }
-                {
-                  name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
-                  secretRef: 'app-insights-key'
-                }
-                {
-                  name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
-                  secretRef: 'app-insights-connection-string'
-                }
-                {
-                  name: 'ConnectionStrings__DbConnection'
-                  secretRef: 'sqlserver-connectionstring'
-                }
-              ]
+            {
+              name: 'ASPNETCORE_ENVIRONMENT'
+              value: 'ContainerApps'
+            }
+            {
+              name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
+              secretRef: 'app-insights-key'
+            }
+            {
+              name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
+              secretRef: 'app-insights-connection-string'
+            }
+            {
+              name: 'OLTP_ENDPOINT'
+              secretRef: 'otlp-endpoint'
+            }
+           
+          ]
           resources: {
             cpu: json('0.5')
             memory: '1.0Gi'
@@ -109,24 +103,18 @@ resource backendApi 'Microsoft.App/containerApps@2025-01-01' = {
       ]
       scale: {
         minReplicas: 0
-        maxReplicas: 1
+        maxReplicas: 3
       }
     }
   }
-
   identity: {
     type: 'UserAssigned'
     userAssignedIdentities: {
       '${userAssignedIdentity.id}' : {}
     }
   }
-  dependsOn: [
-    env
-    
-    
-  ]
 }
 
 
 @description('The FQDN for the Backend API')
-output fqdn string = backendApi.properties.configuration.ingress.fqdn
+output fqdn string = containerApp.properties.configuration.ingress.fqdn

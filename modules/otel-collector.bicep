@@ -54,7 +54,7 @@ resource containerApp 'Microsoft.App/containerApps@2025-01-01' = {
       ]
       activeRevisionsMode: 'Single'
       ingress: {
-        external: true
+        external: false
         targetPort: 4318
         transport: 'auto'
         allowInsecure: false

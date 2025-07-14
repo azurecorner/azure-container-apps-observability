@@ -1,64 +1,92 @@
-# azure-container-apps-observability
 
-# https://github.com/denniszielke/serverless-job-engine
+# 
 
-# https://denniszielke.medium.com/understanding-your-application-performance-with-custom-metrics-in-azure-container-apps-aee0ccc2bb85
+$subscriptionId = (Get-AzContext).Subscription.Id
+az account set --subscription $subscriptionId
 
-#  Exploring OpenTelemetry Agent support in Azure Container Apps
+$resourceGroupName = "RG-ACA-OTEL-COLLECTOR"
+New-AzResourceGroup -Name $resourceGroupName -Location "francecentral"
 
-  https://youtu.be/CjU-HxmsGBk?si=Ky6lcBOxNscL0qQn
+az deployment group create  --resource-group $resourceGroupName --template-file main.bicep 
 
-  https://github.com/willvelida/lets-build-aca
+#
 
-# How to monitor applications by using OpenTelemetry on Azure Container Apps
+$acrName="datasyncotelcr"
+az acr login --name $acrName
 
-  https://techcommunity.microsoft.com/blog/fasttrackforazureblog/how-to-monitor-applications-by-using-opentelemetry-on-azure-container-apps/4235035#community-4235035-4-forwarding-diag
+cd .\src\OtelReferenceApp\
+docker build -t "$acrName.azurecr.io/web-api:latest" -f .\WebApi\Dockerfile . --no-cache
 
-# Running the OpenTelemetry Collector in Azure Container Apps  ==> GOOD
+docker push "$acrName.azurecr.io/web-api:latest"
 
-  https://www.honeycomb.io/blog/opentelemetry-collector-azure-container-apps
+docker build -t "$acrName.azurecr.io/web-app:latest" -f .\WebApp\Dockerfile . --no-cache
 
-  https://medium.com/ingeniouslysimple/deploy-and-configure-an-opentelemetry-collector-in-azure-via-terraform-0c4941962f1c
+docker push "$acrName.azurecr.io/web-app:latest"
 
-# OpenTelemetry on Azure Container Apps Revisited - Managed OpenTelemetry Agent
-  https://blog.depechie.com/posts/2024-05-05-opentelemetry-on-azure-container-apps-revisited/
+#
 
-# deploy
-
-$subscriptionId= (Get-AzContext).Subscription.id 
-
-az account set --subscription $subscriptionId 
-
-$resourceGroupName="RG-CONTAINER-APPS-OBSERVABILITY"
-
-New-AzResourceGroup -Name $resourceGroupName -Location "francecentral" 
-
- 
-New-AzResourceGroupDeployment -Name "container-apps-observability-001" -ResourceGroupName $resourceGroupName -TemplateFile main.bicep -TemplateParameterFile main.bicepparam -DeploymentDebugLogLevel All
+az deployment group create  --resource-group $resourceGroupName --template-file main.bicep --parameters deployApps=true
 
 
 
+# logs
 
-az containerapp show --name dayasync-weatherforecast-api  --resource-group RG-CONTAINER-APPS-OBSERVABILITY
+traces
+| where  severityLevel >= 1              // filter Warning/Error
+| where cloud_RoleName == "WeatherForecast.WebApp"
+| project LogTime = timestamp,
+          Message = message,
+          Logger = customDimensions.CategoryName
+| order by LogTime desc
 
 
-az containerapp logs show --name dayasync-weatherforecast-api  --resource-group RG-CONTAINER-APPS-OBSERVABILITY --follow
+traces
+| where  severityLevel >= 1              // filter Warning/Error
+| where cloud_RoleName == "WeatherForecast.WebApi"
+| project LogTime = timestamp,
+          Message = message,
+          Logger = customDimensions.CategoryName
+| order by LogTime desc
 
-az containerapp show \
-  --name dayasync-weatherforecast-api \
-  --resource-group RG-CONTAINER-APPS-OBSERVABILITY \
-  --query "properties.template.containers[0].image"
+# traces
+
+requests
+| where cloud_RoleName == "WeatherForecast.WebApi"
+| project RequestTime = timestamp,
+          Name = name,
+          Duration = duration,
+          Success = success
+| order by RequestTime desc
 
 
-az containerapp revision list \
-  --name dayasync-weatherforecast-api \
-  --resource-group RG-CONTAINER-APPS-OBSERVABILITY \
-  --query "[].{Name:name, State:properties.active, Reason:properties.healthState, Conditions:properties.conditions}" \
-  --output json
+requests
+| where cloud_RoleName == "WeatherForecast.WebApp"
+| project RequestTime = timestamp,
+          Name = name,
+          Duration = duration,
+          Success = success
+| order by RequestTime desc
 
- az containerapp show \
-  --name dayasync-weatherforecast-api \
-  --resource-group RG-CONTAINER-APPS-OBSERVABILITY \
-  --query "properties.provisioningState"
-"Failed"
+// External dependencies
+dependencies
+| where cloud_RoleName == "WeatherForecast.WebApp"
+| project DepTime = timestamp,
+          Target = target,
+          Type = type,
+          ResultCode = resultCode
+| order by DepTime desc
 
+# metrics
+
+customMetrics
+ | where cloud_RoleName == "WeatherForecast.WebApi"
+ | project Time = timestamp,
+            Type = "metric",
+            Name = name, value
+
+
+customMetrics
+ | where cloud_RoleName == "WeatherForecast.WebApp"
+ | project Time = timestamp,
+            Type = "metric",
+            Name = name, value
