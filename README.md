@@ -1,5 +1,5 @@
 
-# 
+#
 
 $subscriptionId = (Get-AzContext).Subscription.Id
 az account set --subscription $subscriptionId
@@ -7,7 +7,7 @@ az account set --subscription $subscriptionId
 $resourceGroupName = "RG-ACA-OTEL-COLLECTOR"
 New-AzResourceGroup -Name $resourceGroupName -Location "francecentral"
 
-az deployment group create  --resource-group $resourceGroupName --template-file main.bicep 
+az deployment group create  --resource-group $resourceGroupName --template-file main.bicep
 
 #
 
@@ -27,8 +27,6 @@ docker push "$acrName.azurecr.io/web-app:latest"
 
 az deployment group create  --resource-group $resourceGroupName --template-file main.bicep --parameters deployApps=true
 
-
-
 # logs
 
 traces
@@ -38,7 +36,6 @@ traces
           Message = message,
           Logger = customDimensions.CategoryName
 | order by LogTime desc
-
 
 traces
 | where  severityLevel >= 1              // filter Warning/Error
@@ -57,7 +54,6 @@ requests
           Duration = duration,
           Success = success
 | order by RequestTime desc
-
 
 requests
 | where cloud_RoleName == "WeatherForecast.WebApp"
@@ -84,9 +80,19 @@ customMetrics
             Type = "metric",
             Name = name, value
 
-
 customMetrics
  | where cloud_RoleName == "WeatherForecast.WebApp"
  | project Time = timestamp,
             Type = "metric",
             Name = name, value
+# container crashing
+
+ContainerAppSystemLogs_CL 
+| where ContainerAppName_s =="weatherforecast-api"
+| where Reason_s == "ContainerCrashing"
+| project TimeGenerated, RevisionName_s, Log_s
+
+
+# otel collector logs
+ContainerAppConsoleLogs_CL 
+| where ContainerAppName_s =="datasync-otel-collector"
