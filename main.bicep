@@ -117,6 +117,8 @@ module containerRegistry 'modules/container-registry.bicep' =   {
   }
 }
 
+// === Web API Container App ===
+// This module deploys the Web API as a Container App
 
 
 module backend 'modules/web-api.bicep' = if (deployApps) {
@@ -126,7 +128,6 @@ module backend 'modules/web-api.bicep' = if (deployApps) {
     containerRegistryName: containerRegistry.outputs.name
     location: location
     userAssignedIdentityName: managedIdentity.name
-    appInsightsName: appInsights.name
     imageName: '${containerRegistry.outputs.serverName}/web-api:latest'
     oltp_endpoind: 'https://${otelcollector.outputs.containerAppFqdn}'
    }
@@ -137,12 +138,11 @@ module frontend 'modules/web-app.bicep' = if (deployApps) {
   params: {
     containerAppEnvName: containerAppEnvName
     containerRegistryName: containerRegistry.outputs.name
-    appInsightsName: appInsights.name
     location: location
     userAssignedIdentityName: managedIdentity.name
     imageName: '${containerRegistry.outputs.serverName}/web-app:latest'
     oltp_endpoind: 'https://${otelcollector.outputs.containerAppFqdn}'
-    backendFqdn: backend.outputs.fqdn
+    backendFqdn: backend.?outputs.fqdn!
    }
 }
  

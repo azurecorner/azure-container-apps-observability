@@ -7,8 +7,6 @@ param containerAppEnvName string
 @description('The name of the Container Registry that this Container App pull images')
 param containerRegistryName string
 
-param appInsightsName string 
-
 @description('The container image that this Container App will use')
 param imageName string
 
@@ -26,11 +24,6 @@ resource env 'Microsoft.App/managedEnvironments@2025-01-01' existing = {
 resource containerRegistry 'Microsoft.ContainerRegistry/registries@2025-04-01' existing = {
   name: containerRegistryName
 }
-
-resource appInsights 'Microsoft.Insights/components@2020-02-02' existing = {
-  name: appInsightsName
-
-} 
 
 resource userAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2024-11-30' existing = {
   name: userAssignedIdentityName
@@ -58,14 +51,6 @@ resource containerApp 'Microsoft.App/containerApps@2025-01-01' = {
       ]
       secrets: [
         {
-          name: 'app-insights-key'
-          value: appInsights.properties.InstrumentationKey
-        }
-        {
-          name: 'app-insights-connection-string'
-          value: appInsights.properties.ConnectionString
-        }
-        {
           name: 'otlp-endpoint'
           value: oltp_endpoind
         }
@@ -81,14 +66,7 @@ resource containerApp 'Microsoft.App/containerApps@2025-01-01' = {
               name: 'ASPNETCORE_ENVIRONMENT'
               value: 'ContainerApps'
             }
-            {
-              name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
-              secretRef: 'app-insights-key'
-            }
-            {
-              name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
-              secretRef: 'app-insights-connection-string'
-            }
+             
             {
               name: 'OLTP_ENDPOINT'
               secretRef: 'otlp-endpoint'

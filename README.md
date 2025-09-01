@@ -1,5 +1,5 @@
 
-#
+# deploy observability infrastructure
 
 $subscriptionId = (Get-AzContext).Subscription.Id
 az account set --subscription $subscriptionId
@@ -9,21 +9,22 @@ New-AzResourceGroup -Name $resourceGroupName -Location "francecentral"
 
 az deployment group create  --resource-group $resourceGroupName --template-file main.bicep
 
-#
+# build and push application image to container registry
 
 $acrName="datasyncotelcr"
 az acr login --name $acrName
 
-cd .\src\OtelReferenceApp\
-docker build -t "$acrName.azurecr.io/web-api:latest" -f .\WebApi\Dockerfile . --no-cache
+docker build -t "$acrName.azurecr.io/web-api:latest" -f .\src\OtelReferenceApp\WebApi\Dockerfile .\src\OtelReferenceApp\ --no-cache
 
 docker push "$acrName.azurecr.io/web-api:latest"
 
-docker build -t "$acrName.azurecr.io/web-app:latest" -f .\WebApp\Dockerfile . --no-cache
+docker build -t "$acrName.azurecr.io/web-app:latest" -f .\src\OtelReferenceApp\WebApp\Dockerfile .\src\OtelReferenceApp\ --no-cache
 
 docker push "$acrName.azurecr.io/web-app:latest"
 
-#
+# deploy web app and web api
+
+$resourceGroupName = "RG-ACA-OTEL-COLLECTOR"
 
 az deployment group create  --resource-group $resourceGroupName --template-file main.bicep --parameters deployApps=true
 
@@ -85,14 +86,15 @@ customMetrics
  | project Time = timestamp,
             Type = "metric",
             Name = name, value
+
 # container crashing
 
-ContainerAppSystemLogs_CL 
+ContainerAppSystemLogs_CL
 | where ContainerAppName_s =="weatherforecast-api"
 | where Reason_s == "ContainerCrashing"
 | project TimeGenerated, RevisionName_s, Log_s
 
-
 # otel collector logs
-ContainerAppConsoleLogs_CL 
+
+ContainerAppConsoleLogs_CL
 | where ContainerAppName_s =="datasync-otel-collector"
