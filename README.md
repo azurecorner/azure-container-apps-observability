@@ -296,12 +296,21 @@ az deployment group create --resource-group $resourceGroupName --template-file m
 ```
 
 # 8. Test and verify the deployed applications and the observability setup
+1. Locate the `weatherforecast-app` in the Azure resource group (in this example, `RG-ACA-OTEL-COLLECTOR`).
+2. Click the **Application URL** link.  
+3. The frontend web application will open in your browser.
 
 <img width="1293" height="581" alt="image" src="https://github.com/user-attachments/assets/e4041f1e-11c2-4926-a071-6120fb386351" />
 
+4. Click the **WeatherForecast** button (or link in the menu) to call the web API.
+
 <img width="1283" height="727" alt="image" src="https://github.com/user-attachments/assets/6fae0e17-767a-4b3c-8b79-3f264772dd7b" />
 
-<img width="1078" height="926" alt="image" src="https://github.com/user-attachments/assets/eb12fa35-adcc-419b-945e-ad1cba9fcaac" />
+5. Go to **Azure Application Insights** and click on **Application Map** to visualize the traces from the web app to the web API.
+
+<img width="1094" height="922" alt="image" src="https://github.com/user-attachments/assets/7d95f96a-e164-4b46-806a-5d2db03547a1" />
+
+6. Finally, navigate to **Metrics** (under the Monitoring menu of Application Insights), choose **Custom Metrics** in the metric namespace, and select a metric to view.
 
 <img width="1138" height="821" alt="image" src="https://github.com/user-attachments/assets/95d9d64b-ba22-42f5-8f0c-b5a354ed9cf6" />
 
