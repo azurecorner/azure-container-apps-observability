@@ -303,6 +303,15 @@ az deployment group create --resource-group $resourceGroupName --template-file m
 
 # 8. Test and verify the deployed applications and the observability setup
 
+<img width="1293" height="581" alt="image" src="https://github.com/user-attachments/assets/e4041f1e-11c2-4926-a071-6120fb386351" />
+
+<img width="1283" height="727" alt="image" src="https://github.com/user-attachments/assets/6fae0e17-767a-4b3c-8b79-3f264772dd7b" />
+
+<img width="1078" height="926" alt="image" src="https://github.com/user-attachments/assets/eb12fa35-adcc-419b-945e-ad1cba9fcaac" />
+
+<img width="1138" height="821" alt="image" src="https://github.com/user-attachments/assets/95d9d64b-ba22-42f5-8f0c-b5a354ed9cf6" />
+
+
 ## logs
 
 This Kusto Query Language (KQL) snippet queries application traces in Azure Monitor:
