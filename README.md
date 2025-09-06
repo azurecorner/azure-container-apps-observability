@@ -6,14 +6,12 @@ The goal is to enable end-to-end observability by collecting **metrics**, **logs
 <img width="884" height="708" alt="Architecture drawio (2)" src="https://github.com/user-attachments/assets/596444b5-2904-45c8-9c34-8d1ba9646176" />
 
 
----
 
 ## What is OpenTelemetry?
 
 [OpenTelemetry](https://opentelemetry.io/docs/what-is-opentelemetry/) is an open-source observability framework that provides a **vendor-neutral standard** for collecting telemetry data (traces, metrics, and logs).  
 It allows developers and platform engineers to gain visibility into distributed systems, troubleshoot issues, and optimize performance without being locked into a single monitoring provider.
 
----
 
 ## The OpenTelemetry Collector
 
@@ -25,7 +23,6 @@ The [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/) is a ven
 
 When deployed inside **Azure Container Apps**, the Collector can be used to capture observability data across microservices running in your environment.
 
----
 
 ## Why Use OpenTelemetry with Azure Container Apps?
 
@@ -39,7 +36,6 @@ Adding OpenTelemetry provides:
 
 This approach allows you to move beyond basic logging and gain **deep observability** into your applications and infrastructure.
 
----
 
 ## Tutorial Scope
 
@@ -54,14 +50,12 @@ This guide will walk you through setting up a complete observability pipeline an
 7. Deploy both the **web application** and the **web API**.  
 8. Test and verify the deployed applications and the observability setup.
 
----
 
 To start enabling observability, we need to deploy an **OpenTelemetry Collector** as a container in **Azure Container Apps**.  
 The Collector acts as a telemetry gateway, receiving data from your applications, processing it, and exporting it to monitoring backends like **Azure Monitor** and **Application Insights**.  
 
 Below is a sample configuration for the Collector. This setup receives telemetry over the **OTLP protocol**, enriches it with metadata about the container app, filters out unwanted spans (such as health checks), and exports the data to **Azure Monitor** as well as to the console (logging) for debugging.
 
----
 
 # 1.  OpenTelemetry Collector configuration
 
@@ -129,7 +123,7 @@ This setup provisions the **Storage + File Share**, uploads the **Collector conf
 Before running the OpenTelemetry Collector in Azure Container Apps, we need to prepare the **observability infrastructure**.  
 This involves creating a **Storage Account** with a **File Share**, uploading the Collector configuration, and mounting that File Share inside the Container App.
 
----
+
 
 ### File Share Mount into Container App Environment
 
@@ -137,7 +131,7 @@ This involves creating a **Storage Account** with a **File Share**, uploading th
 - Connects to the **Azure Storage Account** and its **File Share**.  
 - Makes the `config.yaml` file available inside the container at runtime.  
 
----
+
 
 ### Container App Definition
 
@@ -148,7 +142,7 @@ This involves creating a **Storage Account** with a **File Share**, uploading th
 
 #### Template
 
-- Runs the **OpenTelemetry Collector** using the official image `otel/opentelemetry-collector-contrib`.  
+- Runs the **OpenTelemetry Collector** using the official image `otel/opentelemetry-collector-contrib:0.98.0`.  Replace **0.98.0** with current version
 - Loads the configuration from `/etc/otelcol/config.yaml`.  
 - Mounts the **Azure File Share** at `/etc/otelcol`.  
 
@@ -157,7 +151,7 @@ This involves creating a **Storage Account** with a **File Share**, uploading th
 - Declares a volume of type **AzureFile** pointing to the File Share.  
 - Ensures that the configuration file is **persisted and accessible**.  
 
----
+
 
 # 3. Configure the Collector to **receive telemetry data** from your application
 
@@ -270,8 +264,8 @@ az deployment group create --resource-group $resourceGroupName --template-file m
 # 6.  build and push application image to container registry
 
 - Logs into the Azure Container Registry named `datasyncotelcr`.  
-- Builds the **Web API** Docker image without using cache and pushes it to the registry.  
-- Builds the **Web App** Docker image without using cache and pushes it to the registry.
+- Builds the **Web API** Docker image and pushes it to the registry.  
+- Builds the **Web App** Docker image and pushes it to the registry.
 
 This script builds and pushes container images to an Azure Container Registry (ACR) using Docker and Azure CLI:
 
