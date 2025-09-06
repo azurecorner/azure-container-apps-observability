@@ -3,6 +3,9 @@
 In this tutorial, we will set up **OpenTelemetry** in **Azure Container Apps** using the **OpenTelemetry Collector**.  
 The goal is to enable end-to-end observability by collecting **metrics**, **logs**, and **traces** from your serveless containerized applications and sending them to a backend :  **Application Insights**
 
+<img width="884" height="708" alt="Architecture drawio (2)" src="https://github.com/user-attachments/assets/596444b5-2904-45c8-9c34-8d1ba9646176" />
+
+
 ---
 
 ## What is OpenTelemetry?
