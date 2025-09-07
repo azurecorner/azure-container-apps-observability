@@ -5,13 +5,10 @@ The goal is to enable end-to-end observability by collecting **metrics**, **logs
 
 <img width="884" height="708" alt="Architecture drawio (2)" src="https://github.com/user-attachments/assets/596444b5-2904-45c8-9c34-8d1ba9646176" />
 
-
-
 ## What is OpenTelemetry?
 
 [OpenTelemetry](https://opentelemetry.io/docs/what-is-opentelemetry/) is an open-source observability framework that provides a **vendor-neutral standard** for collecting telemetry data (traces, metrics, and logs).  
 It allows developers and platform engineers to gain visibility into distributed systems, troubleshoot issues, and optimize performance without being locked into a single monitoring provider.
-
 
 ## The OpenTelemetry Collector
 
@@ -22,7 +19,6 @@ The [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/) is a ven
 - **Exporting** telemetry to backends like **Azure Monitor**, **Jaeger**, **Prometheus**, or **Grafana**.
 
 When deployed inside **Azure Container Apps**, the Collector can be used to capture observability data across microservices running in your environment.
-
 
 ## Why Use OpenTelemetry with Azure Container Apps?
 
@@ -35,7 +31,6 @@ Adding OpenTelemetry provides:
 - **Flexibility** to export data to multiple monitoring backends.  
 
 This approach allows you to move beyond basic logging and gain **deep observability** into your applications and infrastructure.
-
 
 ## Tutorial Scope
 
@@ -50,12 +45,10 @@ This guide will walk you through setting up a complete observability pipeline an
 7. Deploy both the **web application** and the **web API**.  
 8. Test and verify the deployed applications and the observability setup.
 
-
 To start enabling observability, we need to deploy an **OpenTelemetry Collector** as a container in **Azure Container Apps**.  
 The Collector acts as a telemetry gateway, receiving data from your applications, processing it, and exporting it to monitoring backends like **Azure Monitor** and **Application Insights**.  
 
 Below is a sample configuration for the Collector. This setup receives telemetry over the **OTLP protocol**, enriches it with metadata about the container app, filters out unwanted spans (such as health checks), and exports the data to **Azure Monitor** as well as to the console (logging) for debugging.
-
 
 # 1.  OpenTelemetry Collector configuration
 
@@ -123,15 +116,11 @@ This setup provisions the **Storage + File Share**, uploads the **Collector conf
 Before running the OpenTelemetry Collector in Azure Container Apps, we need to prepare the **observability infrastructure**.  
 This involves creating a **Storage Account** with a **File Share**, uploading the Collector configuration, and mounting that File Share inside the Container App.
 
-
-
 ### File Share Mount into Container App Environment
 
 - Creates a **storage mount resource** inside the Container App’s managed environment.  
 - Connects to the **Azure Storage Account** and its **File Share**.  
 - Makes the `config.yaml` file available inside the container at runtime.  
-
-
 
 ### Container App Definition
 
@@ -151,7 +140,90 @@ This involves creating a **Storage Account** with a **File Share**, uploading th
 - Declares a volume of type **AzureFile** pointing to the File Share.  
 - Ensures that the configuration file is **persisted and accessible**.  
 
+```bicep
+// === File Share Mount into Container App Environment ===
+resource fileShareMount 'Microsoft.App/managedEnvironments/storages@2023-05-01' = {
+  parent: containerEnv
+  name: fileShareName
+  properties: {
+    azureFile: {
+      accountName: storageAccountName
+      shareName: fileShareName
+      accountKey: storageAccountKey
+      accessMode: 'ReadWrite'
+    }
+  }
+}
 
+// === Container App ===
+resource containerApp 'Microsoft.App/containerApps@2025-01-01' = {
+  name: containerAppName
+  location: location
+  properties: {
+    managedEnvironmentId: containerEnv.id
+    configuration: {
+      secrets: [
+        {
+          name: 'appinsights-conn'
+          value: appInsights.properties.ConnectionString
+        }
+      ]
+      activeRevisionsMode: 'Single'
+      ingress: {
+        external: false
+        targetPort: 4318
+        transport: 'auto'
+        allowInsecure: false
+      }
+    }
+    template: {
+      containers: [
+        {
+          name: 'collector'
+          image: 'otel/opentelemetry-collector-contrib:0.98.0'
+          command: []
+          args: [
+            '--config=/etc/otelcol/config.yaml'
+          ]
+          env: [
+            {
+              name: 'APPINSIGHTS_CONN_STRING'
+              secretRef: 'appinsights-conn'
+            }
+          ]
+          resources: {
+            cpu: json('0.5')
+            memory: '1.0Gi'
+          }
+          volumeMounts: [
+            {
+              mountPath: '/etc/otelcol'
+              volumeName: 'config'
+            }
+          ]
+        }
+      ]
+      volumes: [
+        {
+          name: 'config'
+          storageType: 'AzureFile'
+          storageName: fileShareName
+        }
+      ]
+      scale: {
+        minReplicas: 1
+        maxReplicas: 1
+      }
+    }
+  }
+  dependsOn: [
+    
+    fileShareMount
+  ]
+}
+
+
+```
 
 # 3. Configure the Collector to **receive telemetry data** from your application
 
@@ -296,24 +368,28 @@ az deployment group create --resource-group $resourceGroupName --template-file m
 ```
 
 # 8. Test and verify the deployed applications and the observability setup
+
 1. Locate the `weatherforecast-app` in the Azure resource group (in this example, `RG-ACA-OTEL-COLLECTOR`).
 2. Click the **Application URL** link.  
 3. The frontend web application will open in your browser.
 
 <img width="1293" height="581" alt="image" src="https://github.com/user-attachments/assets/e4041f1e-11c2-4926-a071-6120fb386351" />
+<br />
 
 4. Click the **WeatherForecast** button (or link in the menu) to call the web API.
+<br />
 
 <img width="1283" height="727" alt="image" src="https://github.com/user-attachments/assets/6fae0e17-767a-4b3c-8b79-3f264772dd7b" />
 
+
 5. Go to **Azure Application Insights** and click on **Application Map** to visualize the traces from the web app to the web API.
+
 
 <img width="1094" height="922" alt="image" src="https://github.com/user-attachments/assets/7d95f96a-e164-4b46-806a-5d2db03547a1" />
 
 6. Finally, navigate to **Metrics** (under the Monitoring menu of Application Insights), choose **Custom Metrics** in the metric namespace, and select a metric to view.
 
 <img width="1138" height="821" alt="image" src="https://github.com/user-attachments/assets/95d9d64b-ba22-42f5-8f0c-b5a354ed9cf6" />
-
 
 ## logs
 
@@ -384,7 +460,6 @@ This Kusto Query Language (KQL) snippet queries custom metrics in Azure Monitor 
 - Retrieves custom metrics from both **Web API** and **Web App**.  
 - Projects timestamp, metric name, type, and value for each metric.  
 - Helps monitor application-specific performance and behavior over time.
-
 
 ```kql
 customMetrics
